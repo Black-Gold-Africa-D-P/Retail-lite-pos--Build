@@ -1,0 +1,133 @@
+[build]
+  # Publish directory (current directory)
+  publish = "."
+  
+  # No build command needed for static site
+  command = ""
+
+# Redirect rules for SPA-like behavior
+[[redirects]]
+  # Redirect all non-file requests to index.html (for SPA routing)
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"], Country = ["US"]}
+  
+# Specific redirects for your pages
+[[redirects]]
+  from = "/login"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/signup" 
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/app"
+  to = "/dashboard.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Cache control
+    Cache-Control = "public, max-age=31536000"
+    
+    # HSTS (if using HTTPS)
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Specific headers for HTML files
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Headers for images
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Headers for CSS and JS files (if any)
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Environment variables (if needed)
+[build.environment]
+  NODE_VERSION = "18"
+  HUGO_VERSION = "0.82.0"
+
+# Form handling (for contact forms)
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+# Plugin configuration (optional)
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+  [plugins.inputs.thresholds]
+    performance = 0.9
+    accessibility = 0.9
+    best-practices = 0.9
+    seo = 0.9
+
+# Edge functions (if needed)
+[[edge_functions]]
+  function = "hello"
+  path = "/api/hello"
+
+# Split testing (optional)
+[context.production.environment]
+  HUGO_ENV = "production"
+
+[context.deploy-preview.environment]
+  HUGO_ENV = "staging"
+
+[context.branch-deploy.environment]
+  HUGO_ENV = "development"
+
+# Custom error pages
+[[redirects]]
+  from = "/404"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/500"
+  to = "/index.html"
+  status = 500
