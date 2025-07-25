@@ -625,28 +625,42 @@ header {
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <button onclick="logout()" style="background:#2E7D32; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
-  ← Logout
-</button>
-<h1>Welcome, <span id="userName"></span>!</h1>
+            <h1>Welcome, <span id="userName"></span>!</h1>
   <button id="logoutBtn" style="background:#2E7D32; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
     ← Logout
   </button>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const user = JSON.parse(localStorage.getItem('retailLiteUser'));
-      if (!user) {
-        window.location.href = 'index.html';
-        return;
-      }
-      document.getElementById('userName').textContent = user.businessName || 'Retailer';
+      try {
+        const user = JSON.parse(localStorage.getItem('retailLiteUser'));
+        if (!user || !user.businessName) {
+          console.log('No valid user session found, redirecting to login');
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        document.getElementById('userName').textContent = user.businessName || 'Retailer';
 
-      document.getElementById('logoutBtn').addEventListener('click', () => {
-        localStorage.removeItem('retailLiteUser');
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('retailLiteUser');
+            window.location.href = 'index.html';
+          });
+        }
+      } catch (error) {
+        console.error('Error loading dashboard:', error);
+        localStorage.removeItem('retailLiteUser'); // Clear potentially corrupted data
         window.location.href = 'index.html';
-      });
+      }
     });
+
+    // Logout function for any inline onclick handlers
+    function logout() {
+      localStorage.removeItem('retailLiteUser');
+      window.location.href = 'index.html';
+    }
   </script>
             <div class="hero">
                 <h1>Tuma Biashara Yako Juu!</h1>
@@ -972,27 +986,6 @@ header {
             </div>
         </div>
     </footer>
-     <h1>Welcome, <span id="userName"></span>!</h1>
-  <button id="logoutBtn" style="background:#2E7D32; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
-    ← Logout
-  </button>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const user = JSON.parse(localStorage.getItem('retailLiteUser'));
-      if (!user) {
-        // Not logged in, redirect to login page
-        window.location.href = 'index.html';
-        return;
-      }
-      document.getElementById('userName').textContent = user.businessName || 'Retailer';
-
-      document.getElementById('logoutBtn').addEventListener('click', () => {
-        localStorage.removeItem('retailLiteUser');
-        window.location.href = 'index.html';
-      });
-    });
-  </script>
    
 </body>
 </html>
