@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail-Lite POS | Tuma Biashara Yako Juu!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #FFD700;
+            --accent: #E67E22;
+            --light: #F5F5F5;
+            --dark: #333333;
+            --earth: #8B4513;
+            --success: #28A745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+    
+     /* Header Styles */
+header {
+     padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('hero-1.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+    overflow: hidden;
+}
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        /* Header Styles */
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('hero-1.png') no-repeat center center;
+    background-size: 1920px 1080px; /* 1080p resolution */
+    color: white;
+    padding: 20px 0;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    min-height: 1080px; /* Minimum height of 1080px */
+    overflow: hidden; /* Prevent image overflow */
+}
+
+        .language-switcher button {
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .logo span {
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #e6c200;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .hero-image {
+            margin-top: 50px;
+            position: relative;
+            height: 400px;
+        }
+        
+        .dashboard-img {
+            width: 700px;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .phone-img {
+            position: absolute;
+            right: 100px;
+            bottom: -50px;
+            width: 200px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Industries Section */
+        .industries {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .industry-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .industry-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .industry-img {
+            height: 150px;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+        
+        .industry-content {
+            padding: 20px;
+        }
+        
+        .industry-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('hero-1.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-item h3 {
+            font-size: 50px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            font-size: 18px;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--secondary);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-header {
+            padding: 30px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        .pricing-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .price {
+            font-size: 40px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .price span {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .pricing-body {
+            padding: 30px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .pricing-features li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+        
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .pricing-btn:hover {
+            background-color: #e6c200;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: "\f10d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 40px;
+            color: rgba(0, 0, 0, 0.05);
+            z-index: 0;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--earth) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .hero-image {
+                height: auto;
+            }
+            
+            .phone-img {
+                position: static;
+                margin-top: 20px;
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="language-switcher">
+            <button>EN</button>
+            <button>SW</button>
+        </div>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span style="color: var(--secondary)">Retail</span>-Lite<span style="color: white">POS</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button onclick="logout()" style="background:#2E7D32; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
+  ← Logout
+</button>
+<h1>Welcome, <span id="userName"></span>!</h1>
+  <button id="logoutBtn" style="background:#2E7D32; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
+    ← Logout
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('retailLiteUser'));
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      document.getElementById('userName').textContent = user.businessName || 'Retailer';
+
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.removeItem('retailLiteUser');
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+            <div class="hero">
+                <h1>Tuma Biashara Yako Juu!</h1>
+                <p>Transform your business with Africa's most powerful POS system. Works online & offline - perfect for Kenya's dynamic market!</p>
+                
+                <div class="cta-buttons">
+                    <a href="#pricing" class="btn btn-primary">Try Free Now!</a>
+                    <a href="#demo" class="btn btn-secondary">Watch Demo</a>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="Dashboard Retaillite.png" alt="Retail-Lite POS Dashboard" class="dashboard-img">
+                    <img src="Retail-lite Pos Logo.png" alt="Retail-Lite Mobile App" class="phone-img">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Retail-Lite POS?</h2>
+                <p>Wueeh! Hii POS ni poa sana! Here's why thousands of Kenyan businesses trust us</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Super Fast</h3>
+                    <p>Process sales in seconds, even with slow internet. Our offline mode keeps you selling anytime!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Manage your business from anywhere using your phone, tablet, or computer.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Smart Reports</h3>
+                    <p>Get real-time insights about your sales, stock, and customers to make better decisions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Multi-Payment</h3>
+                    <p>Accept M-Pesa, cards, cash, and more. All payments in one place with automatic reconciliation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>Inventory Control</h3>
+                    <p>Never run out of stock. Get alerts when items are low and track everything in real-time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer Loyalty</h3>
+                    <p>Build customer profiles, track purchases, and send personalized offers via SMS/WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Industries Section -->
+    <section class="industries" id="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Made for Your Business</h2>
+                <p>Retail-Lite POS works perfectly for all types of businesses across Kenya</p>
+            </div>
+            
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <div class="industry-img" style="background-color: #FF6B6B;">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="industry-content">
+                        <h3>Fashion & Clothing</h3>
+                        <p>Manage multiple sizes, colors, and styles with ease. Boost loyalty with customer profiles.</p>
+                    </div>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-img" style="background-color: #4ECDC4;">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="industry-content">
+                        <h3>Restaurants & Cafés</h3>
+                        <p>Table management, kitchen orders, and fast checkout. Perfect for busy eateries.</p>
+                    </div>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-img" style="background-color: #45B7D1;">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="industry-content">
+                        <h3>Grocery & Duka</h3>
+                        <p>Track perishables, manage suppliers, and run promotions easily.</p>
+                    </div>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-img" style="background-color: #FFA07A;">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="industry-content">
+                        <h3>Supermarkets</h3>
+                        <p>Scale your supermarket with barcode scanning, multi-branch support, and detailed reports.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Retail-Lite in Numbers</h2>
+                <p>See how we're transforming businesses across Kenya</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>93%</h3>
+                    <p>of businesses achieve positive ROI within 3 months</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>37%</h3>
+                    <p>average increase in sales after implementation</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>27min</h3>
+                    <p>saved daily per employee with our efficient tools</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>10,000+</h3>
+                    <p>transactions processed daily across Kenya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple, Affordable Pricing</h2>
+                <p>Chagua plan inayokufaa na uanze kuona matokeo leo!</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter Suite</h3>
+                        <div class="price">10,000 <span>KES/year</span></div>
+                        <p>Perfect for small businesses</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>Basic POS System</li>
+                            <li>Inventory Management</li>
+                            <li>Sales Reports</li>
+                            <li>Customer Database</li>
+                            <li>M-Pesa Integration</li>
+                            <li>Email & SMS Support</li>
+                        </ul>
+                        <a href="#" class="pricing-btn">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-tag">BEST VALUE!</div>
+                    <div class="pricing-header">
+                        <h3>Pro Suite</h3>
+                        <div class="price">100,000 <span>KES/year</span></div>
+                        <p>For growing businesses</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>Everything in Starter</li>
+                            <li>Advanced Analytics</li>
+                            <li>Multi-Branch Support</li>
+                            <li>Staff Management</li>
+                            <li>Barcode Scanning</li>
+                            <li>Priority Support</li>
+                            <li>API Access</li>
+                        </ul>
+                        <a href="#" class="pricing-btn">Get Pro Suite</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">Custom</div>
+                        <p>For large businesses & chains</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>Everything in Pro</li>
+                            <li>Custom Development</li>
+                            <li>Dedicated Account Manager</li>
+                            <li>24/7 Premium Support</li>
+                            <li>Advanced Security</li>
+                            <li>Training for Staff</li>
+                        </ul>
+                        <a href="#" class="pricing-btn">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <p><strong>🔥 SPECIAL LAUNCH OFFER!</strong> Sign up before July 30, 2025 and get 3 months FREE!</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join thousands of Kenyan businesses using Retail-Lite POS to save time, increase sales, and serve customers better.</p>
+            
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="#" class="btn btn-primary" style="background-color: var(--secondary); color: var(--primary);">Sign Up Free for 30 Days</a>
+            </div>
+            
+            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 30px;">
+                <div style="text-align: center;">
+                    <i class="fas fa-phone-alt" style="font-size: 24px; margin-bottom: 10px;"></i>
+                    <h3>Call Us</h3>
+                    <p>+254 724 763629 RETAIL</p>
+                    <p>"Niaje? Tuko hapa kukusaidia!"</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 24px; margin-bottom: 10px;"></i>
+                    <h3>Visit Us</h3>
+                    <p>Westlands, Ngong Road, Bishop Magua Building, Nairobi</p>
+                    <p>Mon-Fri, 8AM-5PM</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <i class="fas fa-envelope" style="font-size: 24px; margin-bottom: 10px;"></i>
+                    <h3>Email Us</h3>
+                    <p>info@retaillite.co.ke info@blackgolddigitalplatfroms.com</p>
+                    <p>We reply within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Retail-Lite POS</h3>
+                    <p>Africa's most powerful POS system, built in Kenya for Kenyan businesses.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#industries">Industries</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">System Status</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Retail-Lite POS by Black Gold Digital Platforms. All Rights Reserved.</p>
+                <p>Launching July 30, 2025 - Nairobi, Kenya</p>
+            </div>
+        </div>
+    </footer>
+     <h1>Welcome, <span id="userName"></span>!</h1>
+  <button id="logoutBtn" style="background:#2E7D32; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
+    ← Logout
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('retailLiteUser'));
+      if (!user) {
+        // Not logged in, redirect to login page
+        window.location.href = 'index.html';
+        return;
+      }
+      document.getElementById('userName').textContent = user.businessName || 'Retailer';
+
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.removeItem('retailLiteUser');
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+   
+</body>
+</html>
