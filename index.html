@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1E88E5">
-    <title>Retail-Lite POS - Power Your Biashara</title>
+    <title>Retail-Lite POS - Empower Your Biashara with Retail-Lite POS</title>
+     <link rel="icon" href="favcon.png" type="image/png">
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -394,7 +395,7 @@
         }
 
         .testimonial-card::before {
-            content: """;
+             content: '"';
             position: absolute;
             top: 15px;
             left: 15px;
@@ -500,98 +501,143 @@
         }
 
         /* Waitlist Section */
-        .waitlist {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--dark-blue) 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
+        /* Keep original style but fix minor issues and improve consistency */
+  .waitlist-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  .waitlist-form h3 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .waitlist-form .form-group {
+    margin-bottom: 1.25rem;
+  }
+  .waitlist-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .waitlist-form input[type="text"],
+  .waitlist-form input[type="email"],
+  .waitlist-form input[type="tel"],
+  .waitlist-form textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  .waitlist-form input[type="text"]:focus,
+  .waitlist-form input[type="email"]:focus,
+  .waitlist-form input[type="tel"]:focus,
+  .waitlist-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  .waitlist-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .waitlist-form .form-submit {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .waitlist-form button.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .waitlist-form button.btn-primary:hover {
+    background-color: #0056b3;
+  }
+  #waitlistSuccess {
+    display: none;
+    margin-top: 1rem;
+    text-align: center;
+    color: green;
+    font-weight: 600;
+  }
 
-        .waitlist::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("feature.png");
-            opacity: 0.1;
-        }
-
-        .waitlist-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .waitlist-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 30px;
-        }
-
-        .waitlist-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-
-        .waitlist-text p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .waitlist-form {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--box-shadow);
-            margin-top: 30px;
-        }
-
-        .waitlist-form h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--black);
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            font-size: 1rem;
-            margin-bottom: 8px;
-            color: var(--black);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
-        }
-
-        .form-submit {
-            margin-top: 20px;
-            text-align: center;
-        }
+    #waitlistForm {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+  }
+  #waitlistForm .form-group {
+    margin-bottom: 15px;
+  }
+  #waitlistForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+  }
+  #waitlistForm input[type="text"],
+  #waitlistForm input[type="email"],
+  #waitlistForm input[type="tel"],
+  #waitlistForm textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  #waitlistForm input[type="text"]:focus,
+  #waitlistForm input[type="email"]:focus,
+  #waitlistForm input[type="tel"]:focus,
+  #waitlistForm textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  #waitlistForm textarea {
+    resize: vertical;
+  }
+  #waitlistForm .form-submit {
+    text-align: center;
+  }
+  #waitlistForm button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #waitlistForm button:hover {
+    background-color: #0056b3;
+  }
+  /* Success message */
+  #waitlistSuccess {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+    color: green;
+    font-weight: 600;
+  }
 
         /* FAQ Section */
         .faq {
@@ -933,7 +979,7 @@
     <!-- Install Banner -->
     <div class="install-banner" id="installBanner">
         <div class="install-banner-content">
-            <img src="https://cdn-icons-png.flaticon.com/512/3062/3062630.png" alt="Retail-Lite POS">
+            <img src="Logo2.png" alt="Retail-Lite POS">
             <p>Install Retail-Lite POS for a better experience</p>
         </div>
         <div class="install-buttons">
@@ -957,10 +1003,10 @@
                     <li><a href="#comparison">Compare</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
-                <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
+  <a href="#waitlistForm" class="btn btn-primary" onclick="event.preventDefault(); const form = document.getElementById('waitlistForm'); if(form) { form.style.display = 'block'; form.scrollIntoView({ behavior: 'auto', block: 'start' }); form.querySelector('input, textarea, select')?.focus(); } else { window.location.href = '#waitlistForm'; }">Join Waitlist</a>
+<button class="mobile-menu-btn" id="mobileMenuBtn">
+    <i class="fas fa-bars"></i>
+</button>
             </nav>
         </div>
     </header>
@@ -985,7 +1031,7 @@
                     <a href="#features" class="btn btn-secondary">Learn More</a>
                 </div>
                 <div class="hero-image animate delay-1">
-                    <img src="mobile.png" alt="Retail-Lite POS App Interface">
+                    <img src="POS-Hero 1.png" alt="Retail-Lite POS App Interface">
                 </div>
             </div>
         </div>
@@ -1002,10 +1048,10 @@
                 <p>Everything you need to run your retail business efficiently, all in one app</p>
             </div>
             
-            <div class="features-grid">
+                   <div class="features-grid">
                 <div class="feature-card animate delay-1">
                     <div class="feature-icon">
-                        <i class="fas fa-wifi-slash"></i>
+                        <img src="disconnected_5932450.png" alt="Offline Mode" style="width: 50px; height: 50px;">
                     </div>
                     <h3>Offline Mode</h3>
                     <p>Keep selling even without internet connection. All data syncs automatically when you're back online.</p>
@@ -1083,7 +1129,7 @@
             </div>
             
             <div class="app-screens animate">
-                <img src="mobile.png" alt="Retail-Lite POS App Screens">
+                <img src="POS-Hero 1.png" alt="Retail-Lite POS App Screens">
             </div>
         </div>
     </section>
@@ -1229,50 +1275,45 @@
     </section>
 
     <!-- Waitlist Section -->
-    <section id="waitlist" class="waitlist">
-        <div class="container">
-            <div class="waitlist-content">
-                <div class="waitlist-text animate">
-                    <h2>
-                        <span class="en">Join Our Waitlist</span>
-                        <span class="sw-light">Jiunge na Orodha Yetu</span>
-                    </h2>
-                    <p>Be among the first to experience Retail-Lite POS. Sign up now and get 3 months free when we launch!</p>
-                    <p>We're working hard to bring you the most affordable and reliable POS system designed specifically for Kenyan retailers.</p>
-                </div>
-                <div class="waitlist-form animate delay-1">
-                    <h3>
-                        <span class="en">Register Your Interest</span>
-                        <span class="sw">Sajili Nia Yako</span>
-                    </h3>
-                    <form id="waitlistForm">
-                        <div class="form-group">
-                            <label for="name">Full Name / Jina Kamili</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="business">Business Name / Jina la Biashara</label>
-                            <input type="text" id="business" name="business" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number / Nambari ya Simu</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address / Anwani ya Barua Pepe</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-submit">
-                            <button type="submit" class="btn btn-primary">
-                                <span class="en">Join Waitlist</span>
-                                <span class="sw-light">Jiunge na Orodha</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+ <div class="waitlist-form animate delay-1">
+  <h3>
+    <span class="en" style="border-right: 1px solid #ccc; padding-right: 10px; margin-right: 10px;">Register Your Interest</span>
+    <span class="sw" style="color: #555;">Sajili Nia Yako</span>
+  </h3>
+ <form id="waitlistForm" action="https://formspree.io/f/your-form-id" method="POST" novalidate></form>
+    <div class="form-group">
+      <label for="name">Full Name / Jina Kamili</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="business">Business Name / Jina la Biashara</label>
+      <input type="text" id="business" name="business" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number / Nambari ya Simu</label>
+      <input type="tel" id="phone" name="phone" required pattern="^\+?\d{7,15}$" title="Enter a valid phone number">
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address / Anwani ya Barua Pepe</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="message">Your message:</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+    </div>
+    <div class="form-submit">
+      <button type="submit" class="btn btn-primary">
+       <h3 style="display: flex; align-items: center; gap: 15px;">
+  <span class="en" style="border-right: 1px solid #ccc; padding-right: 10px;">Join Waitlist</span>
+  <span class="sw" style="color: #555;">Jiunge na Orodha</span>
+</h3>
+<button type="submit" form="waitlistForm" class="btn btn-primary" style="margin-top: 15px;">Submit</button>
+    </div>
+  </form>
+  <div id="waitlistSuccess" role="alert">
+    Thank you for joining our waitlist! We will notify you when we launch.
+  </div>
+</div>
 
     <!-- FAQ Section -->
     <section id="faq" class="faq">
@@ -1384,14 +1425,15 @@
                 <div class="footer-links-column">
                     <h3 class="footer-heading">Contact Us</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> info@retail-lite.co.ke</li>
+                        <li><i class="fas fa-envelope"></i> info@retaillite.co.ke</li>
                         <li><i class="fas fa-phone"></i> +254 710 450 454</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Bishop Magua Building Nairobi, Kenya</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Bishop Magua Building, Nairobi, Kenya, East Africa</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Retail-Lite POS. All rights reserved. | BGDP | Made with ❤️ in Kenya for Africa</p>
+                <p>© 2025 Retail-Lite POS. All rights reserved. | BGDP |  Made <!-- Integrate the form into the existing waitlist form section -->
+in Kenya for Africa</p>
             </div>
         </div>
     </footer>
@@ -1440,23 +1482,7 @@
             });
         });
 
-        // Waitlist form submission
-        waitlistForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const business = document.getElementById('business').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            
-            // In a real app, you would send this data to a server
-            console.log('Form submitted:', { name, business, phone, email });
-            
-            // Show success message
-            alert('Thank you for joining our waitlist! We will notify you when we launch.');
-            waitlistForm.reset();
-        });
+    
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1526,6 +1552,7 @@
             });
         }
 
+        
         // Animation on scroll
         const animateOnScroll = () => {
             const elements = document.querySelectorAll('.animate');
@@ -1546,6 +1573,56 @@
         
         // Listen for scroll events
         window.addEventListener('scroll', animateOnScroll);
+    
     </script>
+<script>
+  // Wait until DOM is fully loaded to avoid null references
+ document.addEventListener('DOMContentLoaded', () => {
+  const waitlistForm = document.getElementById('waitlistForm');
+  const successMessage = document.getElementById('waitlistSuccess');
+
+  if (waitlistForm && successMessage) {
+    waitlistForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!waitlistForm.checkValidity()) {
+        waitlistForm.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(waitlistForm);
+      const formParams = new URLSearchParams();
+
+      for (const pair of formData) {
+        formParams.append(pair[0], pair[1]);
+      }
+
+      try {
+        const response = await fetch(waitlistForm.action, {
+          method: waitlistForm.method,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formParams.toString()
+        });
+
+        if (response.ok) {
+          waitlistForm.reset();
+          successMessage.style.display = 'block';
+        } else {
+          alert('Oops! There was a problem submitting your form.');
+        }
+      } catch (error) {
+        alert('Oops! There was a problem submitting your form.');
+        console.error(error);
+      }
+    });
+  } else {
+    console.error('waitlistForm or successMessage element not found in the DOM.');
+  }
+});
+</script>
+   
 </body>
 </html>
