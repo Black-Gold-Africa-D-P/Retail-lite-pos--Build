@@ -34,7 +34,35 @@
   object-fit: contain;
   margin-bottom: 10px;
 }
+.app-screens {
+  text-align: center;
+  margin: 40px 0;
+}
 
+.app-screens img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.app-screens img:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .app-screens {
+    margin: 30px 10px;
+  }
+
+  .app-screens img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+}
     /* WhatsApp Button */
         .whatsapp-button {
             position: fixed;
@@ -121,7 +149,7 @@ header nav {
     .mobile-menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--dark-blue)}
     /* ----------  HERO  ---------- */
     .hero{background:linear-gradient(135deg,var(--blue) 0%,var(--dark-blue) 100%);color:var(--white);padding:100px 0 80px;position:relative;overflow:hidden}
-    .hero::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+    .hero::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("ffffff' fill-opacity='.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
     .hero-content{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;position:relative;z-index:2}
     .hero-text{flex:1;min-width:300px;padding-right:30px}
     .hero-text h1{font-size:2.8rem;margin-bottom:20px;line-height:1.2}
@@ -371,25 +399,29 @@ header nav {
       <p>Be first to know when we launch &amp; get 3 months free</p>
     </div>
     <div class="waitlist-form animate delay-1">
-     <form id="waitlistForm" action="https://formspree.io/f/xdkdparp" method="POST" novalidate></form>
-        <div class="form-group">
-          <label for="emailOrPhone">Email or Phone Number *</label>
-          <input type="text" id="emailOrPhone" name="emailOrPhone" placeholder="e.g. someone@mail.com or +254712345678" required>
-        </div>
+      <form id="waitlistForm" action="https://formspree.io/f/xdkdparp" method="POST" novalidate>
+        <label for="emailOrPhone">Email or Phone Number *</label>
+        <input type="text" id="emailOrPhone" name="emailOrPhone" placeholder="e.g. someone@mail.com or +254712345678" required>
+
         <div class="form-group">
           <label for="name">Full Name</label>
           <input type="text" id="name" name="name" placeholder="Jane Wambui">
         </div>
+
         <div class="form-group">
           <label for="business">Business Name</label>
           <input type="text" id="business" name="business" placeholder="Wambui Electronics">
         </div>
+
         <div class="form-group">
           <label for="message">Optional Message</label>
           <textarea id="message" name="message" placeholder="Tell us what you sell..."></textarea>
         </div>
+
+        <input type="hidden" name="_captcha" value="false" />
+
         <button type="submit">Join Waitlist</button>
-        <div id="waitlistSuccess"><i class="fas fa-check-circle"></i> Thanks! We'll notify you at launch.</div>
+        <div id="waitlistSuccess" style="display:none;"><i class="fas fa-check-circle"></i> Thanks! We'll notify you at launch.</div>
       </form>
     </div>
   </div>
@@ -467,19 +499,46 @@ header nav {
     q.addEventListener('click',()=>{q.parentElement.classList.toggle('active')});
   });
 
-  /* Wait-list form */
-  document.addEventListener('DOMContentLoaded',()=>{
-    const form=document.getElementById('waitlistForm');
-    const success=document.getElementById('waitlistSuccess');
-    form.addEventListener('submit',async e=>{
-      e.preventDefault();
-      if(!form.checkValidity()){form.reportValidity();return;}
-      try{
-        const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
-        if(res.ok){form.reset();success.style.display='block';}else{alert('Error – please try again');}
-      }catch{alert('Network error – please try again');}
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('waitlistForm');
+  const success = document.getElementById('waitlistSuccess');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded' // Formspree expects urlencoded data
+        }
+      });
+
+      if (res.ok) {
+        form.reset();
+        success.style.display = 'block';
+      } else {
+        alert('Error – please try again');
+      }
+    } catch {
+      alert('Network error – please try again');
+    }
   });
+});
+
+const formData = new URLSearchParams(new FormData(form)).toString();
+const res = await fetch(form.action, {
+  method: 'POST',
+  body: formData,
+  headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' }
+});
 
   /* PWA install banner */
   let deferredPrompt=null;
