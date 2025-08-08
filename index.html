@@ -1,982 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1E88E5">
-    <title>Retail-Lite POS - Empower Your Biashara with Retail-Lite POS</title>
-     <link rel="icon" href="favcon.png" type="image/png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Root variables */
-        :root {
-            --blue: #038343;
-            --green: #004883;
-            --gold: #F1C40F;
-            --black: #000000;
-            --white: #FFFFFF;
-            --gray: #95A5A6;
-            --light-blue: #E3F2FD;
-            --dark-blue: #1565C0;
-            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --border-radius: 10px;
-            --transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#038343"/>
+  <title>Retail-Lite POS - Empower Your Biashara</title>
+  <link rel="icon" href="favcon.png" type="image/png"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* ----------  ROOT  ---------- */
+    :root{
+      --blue:#038343;
+      --green:#004883;
+      --gold:#F1C40F;
+      --black:#000;
+      --white:#fff;
+      --gray:#95A5A6;
+      --light-blue:#E3F2FD;
+      --dark-blue:#1565C0;
+      --box-shadow:0 5px 15px rgba(0,0,0,.1);
+      --border-radius:10px;
+      --transition:all .3s ease;
+    }
+      .sw {
+        font-weight: bold;
+        font-size: 1.3em;
+        color: #F1C40F; /* yellow color */
+    }
+    .feature-icon img {
+  width: 40px;       /* Set appropriate icon size */
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
 
-        /* Base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
-            color: var(--black);
-            overflow-x: hidden;
-            background-color: #f9f9f9;
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-blue);
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--blue);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--dark-blue);
-            transform: translateY(-3px);
-            box-shadow: var(--box-shadow);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--blue);
-            border: 2px solid var(--blue);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--light-blue);
-            transform: translateY(-3px);
-            box-shadow: var(--box-shadow);
-        }
-
-        .feature-card, .testimonial-card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            height: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .bilingual {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .en {
-            margin-bottom: 5px;
-        }
-
-        .sw {
-            font-size: 0.9em;
-            color: rgba(0, 0, 0, 0.7);
-        }
-
-        .sw-light {
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: var(--white);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
+    /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
             z-index: 1000;
-            width: 100%;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-container img {
-            height: 50px;
-            margin-right: 10px;
-        }
-
-        .logo-container h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--black);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--blue);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-blue);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--dark-blue) 100%);
-            color: var(--white);
-            padding: 100px 0 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 30px;
-        }
-
-        .hero-text h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero-text .tagline {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            max-height: 500px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Features Section */
-        .features {
-            background-color: var(--white);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: var(--light-blue);
-            color: var(--blue);
-            font-size: 28px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--black);
-        }
-
-        .feature-card p {
-            font-size: 1rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .feature-highlight {
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .feature-highlight img {
-            max-width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            background-color: var(--light-blue);
-        }
-
-        .steps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 40px;
-            position: relative;
-        }
-
-        .step {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-            margin: 20px 0;
-        }
-
-        .step-number {
+            background: #25D366;
+            color: white;
             width: 60px;
             height: 60px;
-            background-color: var(--blue);
-            color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 24px;
-            margin: 0 auto 20px;
-            position: relative;
-        }
-
-        .step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--black);
-        }
-
-        .step p {
-            font-size: 1rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .app-screens {
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .app-screens img {
-            max-width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background-color: var(--white);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            position: relative;
-        }
-
-        .testimonial-card::before {
-             content: '"';
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 80px;
-            color: var(--light-blue);
-            font-family: serif;
-            line-height: 1;
-            opacity: 0.5;
-        }
-
-        .testimonial-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: var(--black);
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--light-blue);
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blue);
-            font-size: 20px;
-        }
-
-        .author-info h4 {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .author-info p {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .success-story {
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .success-story img {
-            max-width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        /* Comparison Section */
-        .comparison {
-            background-color: var(--light-blue);
-        }
-
-        .comparison-chart {
-            margin-top: 40px;
-            text-align: center;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background-color: var(--blue);
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .highlight {
-            background-color: rgba(30, 136, 229, 0.1) !important;
-            font-weight: 600;
-        }
-
-        /* Waitlist Section */
-        /* Keep original style but fix minor issues and improve consistency */
-  .waitlist-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    background: #fff;
-    padding: 2rem 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-  }
-  .waitlist-form h3 {
-    font-weight: 700;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  .waitlist-form .form-group {
-    margin-bottom: 1.25rem;
-  }
-  .waitlist-form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-  }
-  .waitlist-form input[type="text"],
-  .waitlist-form input[type="email"],
-  .waitlist-form input[type="tel"],
-  .waitlist-form textarea {
-    width: 100%;
-    padding: 0.6rem 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    box-sizing: border-box;
-  }
-  .waitlist-form input[type="text"]:focus,
-  .waitlist-form input[type="email"]:focus,
-  .waitlist-form input[type="tel"]:focus,
-  .waitlist-form textarea:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  .waitlist-form textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  .waitlist-form .form-submit {
-    text-align: center;
-    margin-top: 1.5rem;
-  }
-  .waitlist-form button.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1.1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .waitlist-form button.btn-primary:hover {
-    background-color: #0056b3;
-  }
-  #waitlistSuccess {
-    display: none;
-    margin-top: 1rem;
-    text-align: center;
-    color: green;
-    font-weight: 600;
-  }
-
-    #waitlistForm {
-    max-width: 400px;
-    margin: 0 auto;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    font-family: Arial, sans-serif;
-  }
-  #waitlistForm .form-group {
-    margin-bottom: 15px;
-  }
-  #waitlistForm label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #333;
-  }
-  #waitlistForm input[type="text"],
-  #waitlistForm input[type="email"],
-  #waitlistForm input[type="tel"],
-  #waitlistForm textarea {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-  }
-  #waitlistForm input[type="text"]:focus,
-  #waitlistForm input[type="email"]:focus,
-  #waitlistForm input[type="tel"]:focus,
-  #waitlistForm textarea:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  #waitlistForm textarea {
-    resize: vertical;
-  }
-  #waitlistForm .form-submit {
-    text-align: center;
-  }
-  #waitlistForm button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  #waitlistForm button:hover {
-    background-color: #0056b3;
-  }
-  /* Success message */
-  #waitlistSuccess {
-    display: none;
-    text-align: center;
-    margin-top: 15px;
-    color: green;
-    font-weight: 600;
-  }
-
-        /* FAQ Section */
-        .faq {
-            background-color: var(--white);
-        }
-
-        .faq-container {
-            margin-top: 40px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-        }
-
-        .faq-question {
-            background-color: var(--light-blue);
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-            font-size: 1.1rem;
-            color: var(--black);
-            transition: background-color 0.3s;
-        }
-
-        .faq-question:hover {
-            background-color: #d0e6f9;
-        }
-
-        .faq-question i {
-            font-size: 1.2rem;
-            color: var(--blue);
-            transition: transform 0.3s;
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background-color: var(--white);
-        }
-
-        .faq-answer p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--gray);
-            padding: 20px 0;
-        }
-
-        .faq-item.active .faq-question {
-            background-color: var(--blue);
-            color: var(--white);
-        }
-
-        .faq-item.active .faq-question i {
-            color: var(--white);
-            transform: rotate(180deg);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            padding: 0 20px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--black);
-            color: var(--white);
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .footer-logo {
-            margin-bottom: 20px;
-        }
-
-        .footer-logo img {
-            height: 50px;
-        }
-
-        .footer-about p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-
-        .footer-heading {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            font-size: 30px;
             text-decoration: none;
-            color: var(--gray);
-            font-size: 1rem;
-            transition: color 0.3s;
         }
-
-        .footer-links a:hover {
-            color: var(--blue);
+        
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
         }
+        .language-toggle {
+  margin-left: auto; /* push to right */
+  display: flex;
+  gap: 10px;
+}
 
-        .social-links {
-            display: flex;
-            margin-top: 20px;
-        }
+.language-toggle button {
+  background: transparent;
+  border: 1px solid var(--blue, #1e88e5);
+  color: var(--blue, #1e88e5);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            margin-right: 10px;
-            transition: background-color 0.3s;
-            font-size: 1.2rem;
-        }
+.language-toggle button.active,
+.language-toggle button:hover {
+  background-color: var(--blue, #1e88e5);
+  color: #fff;
+}
+/* Ensure language toggle aligns right inside header nav */
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-        .social-links a:hover {
-            background-color: var(--blue);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            text-align: center;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Install Banner */
-        .install-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--dark-blue);
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1001;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        }
-
-        .install-banner.show {
-            transform: translateY(0);
-        }
-
-        .install-banner-content {
-            display: flex;
-            align-items: center;
-        }
-
-        .install-banner-content img {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-            border-radius: 8px;
-        }
-
-        .install-banner-content p {
-            font-size: 1rem;
-            margin: 0;
-        }
-
-        .install-buttons button {
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-left: 10px;
-        }
-
-        .install-buttons button:hover {
-            background: #e6b801;
-        }
-
-        .install-buttons .close-btn {
-            background: transparent;
-            color: white;
-            font-size: 1.2rem;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero-content, .waitlist-content {
-                flex-direction: column;
-            }
-            
-            .hero-text, .waitlist-text {
-                padding-right: 0;
-                margin-bottom: 40px;
-                text-align: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-text .tagline {
-                font-size: 1.6rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 10px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 80px 0 60px;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            .install-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .install-buttons {
-                margin-top: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-text .tagline {
-                font-size: 1.4rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            
-            .install-banner-content {
-                flex-direction: column;
-            }
-            
-            .install-banner-content img {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate {
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-    </style>
+/* Optional: keep nav-links and language-toggle aligned nicely */
+.nav-links {
+  margin-left: 20px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+    /* ----------  RESET  ---------- */
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans",sans-serif;color:var(--black);background:#f9f9f9;line-height:1.6;overflow-x:hidden}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    section{padding:80px 0}
+    .section-title{text-align:center;margin-bottom:50px}
+    .section-title h2{font-size:2.5rem;margin-bottom:15px;color:var(--dark-blue)}
+    .section-title p{font-size:1.1rem;color:var(--gray);max-width:700px;margin:0 auto}
+    .btn{display:inline-block;padding:12px 28px;border-radius:30px;font-weight:600;font-size:1rem;text-decoration:none;text-align:center;cursor:pointer;transition:var(--transition);border:none}
+    .btn-primary{background:var(--blue);color:var(--white)}
+    .btn-primary:hover{background:var(--dark-blue);transform:translateY(-3px);box-shadow:var(--box-shadow)}
+    .btn-secondary{background:transparent;color:var(--blue);border:2px solid var(--blue)}
+    .btn-secondary:hover{background:var(--light-blue);transform:translateY(-3px);box-shadow:var(--box-shadow)}
+    /* ----------  HEADER  ---------- */
+    header{background:var(--white);padding:15px 0;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:1000}
+    nav{display:flex;justify-content:space-between;align-items:center}
+    .logo-container{display:flex;align-items:center}
+    .logo-container img{height:50px;margin-right:10px}
+    .logo-container h1{font-size:1.5rem;font-weight:700;color:var(--black)}
+    .nav-links{display:flex;list-style:none}
+    .nav-links li{margin-left:20px}
+    .nav-links a{text-decoration:none;color:var(--black);font-weight:500;font-size:1rem;transition:color .3s}
+    .nav-links a:hover{color:var(--blue)}
+    .mobile-menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--dark-blue)}
+    /* ----------  HERO  ---------- */
+    .hero{background:linear-gradient(135deg,var(--blue) 0%,var(--dark-blue) 100%);color:var(--white);padding:100px 0 80px;position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+    .hero-content{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;position:relative;z-index:2}
+    .hero-text{flex:1;min-width:300px;padding-right:30px}
+    .hero-text h1{font-size:2.8rem;margin-bottom:20px;line-height:1.2}
+    .hero-text .tagline{font-size:1.8rem;margin-bottom:25px;color:var(--gold);font-weight:600}
+    .hero-text p{font-size:1.2rem;margin-bottom:30px;line-height:1.5}
+    .hero-image{flex:1;min-width:300px;text-align:center;margin-top:30px}
+    .hero-image img{max-width:100%;height:auto;max-height:500px;border-radius:var(--border-radius);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+    /* ----------  FEATURES  ---------- */
+    .features{background:var(--white)}
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-top:40px}
+    .feature-card{background:var(--white);border-radius:var(--border-radius);padding:30px;box-shadow:var(--box-shadow);transition:var(--transition);height:100%}
+    .feature-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(0,0,0,.15)}
+    .feature-icon{width:70px;height:70px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--light-blue);color:var(--blue);font-size:28px}
+    .feature-card h3{font-size:1.4rem;margin-bottom:15px;color:var(--black)}
+    .feature-card p{font-size:1rem;color:var(--gray);line-height:1.6}
+    /* ----------  HOW IT WORKS  ---------- */
+    .how-it-works{background:var(--light-blue)}
+    .steps{display:flex;flex-wrap:wrap;justify-content:center;margin-top:40px}
+    .step{flex:1;min-width:250px;text-align:center;padding:20px;margin:20px 0}
+    .step-number{width:60px;height:60px;background:var(--blue);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:24px;margin:0 auto 20px}
+    .step h3{font-size:1.3rem;margin-bottom:15px;color:var(--black)}
+    .step p{font-size:1rem;color:var(--gray);line-height:1.6}
+    /* ----------  TESTIMONIALS  ---------- */
+    .testimonials{background:var(--white)}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-top:40px}
+    .testimonial-card{background:var(--white);border-radius:var(--border-radius);padding:30px;box-shadow:var(--box-shadow);position:relative}
+    .testimonial-card::before{content:'"';position:absolute;top:15px;left:15px;font-size:80px;color:var(--light-blue);font-family:serif;line-height:1;opacity:.5}
+    .testimonial-text{font-size:1rem;line-height:1.7;margin-bottom:20px;font-style:italic}
+    .testimonial-author{display:flex;align-items:center}
+    .author-avatar{width:50px;height:50px;border-radius:50%;background:var(--light-blue);margin-right:15px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:20px}
+    .author-info h4{font-weight:700;font-size:1rem;margin-bottom:5px}
+    .author-info p{font-size:.9rem;color:var(--gray)}
+    /* ----------  COMPARISON  ---------- */
+    .comparison{background:var(--light-blue)}
+    .comparison-chart{overflow-x:auto;margin-top:40px}
+    table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--border-radius);overflow:hidden;box-shadow:var(--box-shadow)}
+  th,td{padding:15px;text-align:left;border-bottom:1px solid #eee}
+  th{background:var(--blue);color:var(--white);font-weight:600}
+  tr:nth-child(even){background:#f9f9f9}
+  .highlight{background:rgba(30,136,229,.1)!important;font-weight:600}
+    /* ----------  WAITLIST FORM  ---------- */
+    .waitlist-form{max-width:500px;margin:0 auto;background:var(--white);border-radius:12px;padding:40px;box-shadow:0 8px 25px rgba(0,0,0,.08)}
+    .waitlist-form h3{font-size:1.8rem;margin-bottom:25px;text-align:center;color:var(--blue)}
+    .waitlist-form .form-group{margin-bottom:20px}
+    .waitlist-form label{display:block;font-weight:600;margin-bottom:6px;color:#333}
+    .waitlist-form input,.waitlist-form textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;font-size:1rem;transition:border .3s}
+    .waitlist-form input:focus,.waitlist-form textarea:focus{border-color:var(--blue);outline:none}
+    .waitlist-form textarea{resize:vertical;min-height:100px}
+    .waitlist-form button{width:100%;background:var(--blue);color:#fff;font-size:1.1rem;font-weight:600;padding:14px;border:none;border-radius:6px;cursor:pointer;transition:background .3s}
+    .waitlist-form button:hover{background:var(--brand-dark)}
+    #waitlistSuccess{display:none;text-align:center;color:var(--blue);font-weight:600;margin-top:15px}
+    /* ----------  FAQ  ---------- */
+    .faq{background:var(--white)}
+    .faq-container{max-width:900px;margin:40px auto 0}
+    .faq-item{margin-bottom:15px;border-radius:var(--border-radius);overflow:hidden;box-shadow:var(--box-shadow)}
+    .faq-question{background:var(--light-blue);padding:20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:1.1rem;color:var(--black);transition:background .3s}
+    .faq-question:hover{background:#d0e6f9}
+    .faq-question i{transition:transform .3s}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;background:var(--white)}
+    .faq-answer p{padding:20px 20px 0;font-size:1rem;line-height:1.6;color:var(--gray)}
+    .faq-item.active .faq-question{background:var(--blue);color:var(--white)}
+    .faq-item.active .faq-question i{transform:rotate(180deg)}
+    .faq-item.active .faq-answer{max-height:300px;padding-bottom:20px}
+    /* ----------  FOOTER  ---------- */
+    footer{background:var(--black);color:var(--white);padding:60px 0 30px}
+    .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-bottom:40px}
+    .footer-logo{margin-bottom:20px}
+    .footer-logo img{height:50px}
+    .footer-about p{font-size:1rem;line-height:1.6;margin-bottom:20px;color:var(--gray)}
+    .footer-heading{font-weight:700;font-size:1.2rem;margin-bottom:20px;color:var(--white)}
+    .footer-links{list-style:none}
+    .footer-links li{margin-bottom:12px}
+    .footer-links a{text-decoration:none;color:var(--gray);transition:color .3s}
+    .footer-links a:hover{color:var(--blue)}
+    .social-links{display:flex;margin-top:20px}
+    .social-links a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--white);margin-right:10px;transition:background .3s;font-size:1.2rem}
+    .social-links a:hover{background:var(--blue)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;color:var(--gray);font-size:.9rem}
+    /* ----------  INSTALL BANNER  ---------- */
+    .install-banner{position:fixed;bottom:0;left:0;right:0;background:var(--dark-blue);color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:1001;transform:translateY(100%);transition:transform .3s ease;box-shadow:0 -2px 10px rgba(0,0,0,.1)}
+    .install-banner.show{transform:translateY(0)}
+    .install-banner-content{display:flex;align-items:center}
+    .install-banner-content img{width:40px;height:40px;margin-right:15px;border-radius:8px}
+    .install-buttons button{background:var(--gold);color:var(--black);border:none;padding:8px 15px;border-radius:20px;font-weight:600;cursor:pointer;margin-left:10px}
+    .install-buttons .close-btn{background:transparent;color:#fff;font-size:1.5rem;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+    /* ----------  RESPONSIVE  ---------- */
+    @media(max-width:992px){
+      .hero-content{flex-direction:column;text-align:center}
+      .hero-text{padding-right:0;margin-bottom:40px}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:var(--white);padding:20px;box-shadow:0 5px 10px rgba(0,0,0,.1)}
+      .nav-links.active{display:flex}
+      .mobile-menu-btn{display:block}
+    }
+    @media(max-width:480px){
+      .btn{width:100%;margin-bottom:10px}
+    }
+    /* ----------  ANIMATIONS  ---------- */
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .animate{animation:fadeIn .6s ease forwards}
+    .delay-1{animation-delay:.1s}
+    .delay-2{animation-delay:.2s}
+    .delay-3{animation-delay:.3s}
+  </style>
 </head>
 <body>
-    <!-- Install Banner -->
+
+   
+
+    <a href="https://wa.me/254732655941" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+     <!-- Install Banner -->
     <div class="install-banner" id="installBanner">
         <div class="install-banner-content">
             <img src="Logo2.png" alt="Retail-Lite POS">
@@ -987,642 +247,245 @@
             <button class="close-btn" id="closeBannerBtn">×</button>
         </div>
     </div>
+    
 
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo-container">
-                    <img src="Logo2.png" alt="Retail-Lite POS Logo">
-                    <h1>Retail-Lite POS</h1>
-                </div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#comparison">Compare</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-  <a href="#waitlistForm" class="btn btn-primary" onclick="event.preventDefault(); const form = document.getElementById('waitlistForm'); if(form) { form.style.display = 'block'; form.scrollIntoView({ behavior: 'auto', block: 'start' }); form.querySelector('input, textarea, select')?.focus(); } else { window.location.href = '#waitlistForm'; }">Join Waitlist</a>
-<button class="mobile-menu-btn" id="mobileMenuBtn">
-    <i class="fas fa-bars"></i>
-</button>
-            </nav>
-        </div>
-    </header>
+<!-- Header -->
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo-container">
+        <img src="Logo2.png" alt="Retail-Lite POS Logo"/>
+        <h1>Retail-Lite POS</h1>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#comparison">Compare</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </nav>
+  </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text animate">
-                    <h1>Retail-Lite POS</h1>
-                    <p class="tagline">
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text animate">
+        <h1>Retail-Lite POS</h1>
+       <p class="tagline">
                         <span class="en">Power Your Biashara. Online or Offline.</span>
                         <span class="sw-light">Imarisha Biashara Yako. Mtandaoni au Nje ya Mtandao.</span>
                     </p>
-                    <p>The affordable, reliable point-of-sale solution designed specifically for Kenyan retailers. Run your business seamlessly with or without internet.</p>
-                    <a href="#waitlist" class="btn btn-primary">
-                        <span class="bilingual">
-                            <span class="en">Join Waitlist</span>
-                            <span class="sw-light">Jiunge na Orodha</span>
-                        </span>
-                    </a>
-                    <a href="#features" class="btn btn-secondary">Learn More</a>
-                </div>
-                <div class="hero-image animate delay-1">
-                    <img src="POS-Hero 1.png" alt="Retail-Lite POS App Interface">
-                </div>
-            </div>
-        </div>
-    </section>
+        <p>The affordable, reliable point-of-sale solution designed for Kenyan retailers. Run your business seamlessly with or without internet.</p>
+        <a href="#waitlist" class="btn btn-primary">Join Waitlist - Jiunge na Orodha</a>
+        <a href="#features" class="btn btn-secondary">Learn More</a>
+      </div>
+      <div class="hero-image animate delay-1">
+        <img src="POS-Hero 1.png" alt="Retail-Lite POS App Interface"/>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>
-                    <span class="en">Powerful Features</span>
-                    <span class="sw">Vipengele Vyenye Nguvu</span>
-                </h2>
-                <p>Everything you need to run your retail business efficiently, all in one app</p>
-            </div>
-            
-                   <div class="features-grid">
-                <div class="feature-card animate delay-1">
-                    <div class="feature-icon">
-                        <img src="disconnected_5932450.png" alt="Offline Mode" style="width: 50px; height: 50px;">
-                    </div>
-                    <h3>Offline Mode</h3>
-                    <p>Keep selling even without internet connection. All data syncs automatically when you're back online.</p>
-                </div>
-                <div class="feature-card animate delay-2">
-                    <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3>M-Pesa Integration</h3>
-                    <p>Seamlessly accept and track M-Pesa payments directly within the app. No more manual reconciliation.</p>
-                </div>
-                <div class="feature-card animate delay-3">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Smart Analytics</h3>
-                    <p>Gain insights into your best-selling products, peak sales hours, and customer preferences.</p>
-                </div>
-                <div class="feature-card animate delay-1">
-                    <div class="feature-icon">
-                        <i class="fas fa-boxes"></i>
-                    </div>
-                    <h3>Inventory Management</h3>
-                    <p>Track stock levels in real-time, receive low stock alerts, and manage product categories easily.</p>
-                </div>
-                <div class="feature-card animate delay-2">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Multi-User Access</h3>
-                    <p>Add staff accounts with customized permissions to maintain security while delegating tasks.</p>
-                </div>
-                <div class="feature-card animate delay-3">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Local Support</h3>
-                    <p>Get assistance in English or Swahili from our Kenya-based customer support team.</p>
-                </div>
-            </div>
-            
-            <div class="feature-highlight animate">
-                <img src="features.png" alt="Retail-Lite POS Features">
-            </div>
-        </div>
-    </section>
+<!-- Features -->
+<section id="features" class="features">
+  <div class="container">
+    <div class="section-title animate"><h2>Powerful Features</h2>
+        <span class="sw">Vipengele Vyenye Nguvu</span><bold></bold>
+        <p>Everything you need to run your retail business efficiently</p></div>
+    <div class="features-grid">
+      <div class="feature-card animate delay-1">
+  <div class="feature-icon">
+    <img src="disconnected_5932450.png" alt="Offline Mode Icon" />
+  </div>
+  <h3>Offline Mode</h3>
+  <p>Keep selling even without internet. Data syncs when you’re back online.</p>
+</div>
+      <div class="feature-card animate delay-2"><div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div><h3>M-Pesa Integration</h3><p>Accept & track M-Pesa payments automatically.</p></div>
+      <div class="feature-card animate delay-3"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Smart Analytics</h3><p>Insights on best-sellers, peak hours & customers.</p></div>
+      <div class="feature-card animate delay-1"><div class="feature-icon"><i class="fas fa-boxes"></i></div><h3>Inventory Management</h3><p>Real-time stock levels and low-stock alerts.</p></div>
+      <div class="feature-card animate delay-2"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Multi-User Access</h3><p>Add staff with custom permissions.</p></div>
+      <div class="feature-card animate delay-3"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>Local Support</h3><p>Kenya-based support in English & Swahili.</p></div>
+    </div>
+  </div>
+</section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>
-                    <span class="en">How It Works</span>
-                    <span class="sw">Jinsi Inavyofanya Kazi</span>
-                </h2>
-                <p>Get started with Retail-Lite POS in three simple steps</p>
-            </div>
-            
-            <div class="steps">
-                <div class="step animate delay-1">
-                    <div class="step-number">1</div>
-                    <h3>Download</h3>
-                    <p>Get the app from Google Play Store or our website</p>
-                </div>
-                <div class="step animate delay-2">
-                    <div class="step-number">2</div>
-                    <h3>Sign Up</h3>
-                    <p>Create your account and set up your store profile</p>
-                </div>
-                <div class="step animate delay-3">
-                    <div class="step-number">3</div>
-                    <h3>Start Selling</h3>
-                    <p>Add your products and begin processing sales immediately</p>
-                </div>
-            </div>
-            
-            <div class="app-screens animate">
+<!-- How It Works -->
+<section id="how-it-works" class="how-it-works">
+  <div class="container">
+    <div class="section-title animate"><h2>How It Works</h2><p>Get started in three simple steps</p></div>
+    <div class="steps">
+      <div class="step animate delay-1"><div class="step-number">1</div><h3>Download</h3><p>Get the app from Google Play or our website</p></div>
+      <div class="step animate delay-2"><div class="step-number">2</div><h3>Sign Up</h3><p>Create your account & set up your store</p></div>
+      <div class="step animate delay-3"><div class="step-number">3</div><h3>Start Selling</h3><p>Add products and begin processing sales</p></div>
+    </div>
+  </div>
+       <div class="app-screens animate">
                 <img src="POS-Hero 1.png" alt="Retail-Lite POS App Screens">
             </div>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>
-                    <span class="en">What Our Users Say</span>
-                    <span class="sw">Watumiaji Wetu Wanasema</span>
-                </h2>
-                <p>Hear from retailers who have transformed their businesses with Retail-Lite POS</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card animate delay-1">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"Since using Retail-Lite POS, I've reduced inventory errors by 90%. The offline mode is a lifesaver during power outages in our area.Am Currently Using Beta Version ...Waiting for the full version"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="author-info">
-                                <h4>Jane Wambui</h4>
-                                <p>Electronics Shop, Nairobi</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card animate delay-2">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"The M-Pesa integration saves me hours every day. No more manual checking of payments against sales. Everything is automatic!Am Currently Using Beta Version ...Waiting for the full version"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="author-info">
-                                <h4>David Ochieng</h4>
-                                <p>Grocery Store, Kisumu</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card animate delay-3">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"The analytics helped me identify which products to stock more of. My profits increased by 30% in just two months!Am Currently Using Beta Version ...Waiting for the full version"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="author-info">
-                                <h4>Sarah Muthoni</h4>
-                                <p>Fashion Boutique, Mombasa</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card animate delay-4">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"As a small shop owner, I never thought I could afford a proper POS system. Retail-Lite changed everything for me. Affordable and powerful! Am Currently Using Beta Version ...Waiting for the full version"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="author-info">
-                                <h4>John Kamau</h4>
-                                <p>Hardware Store, Nakuru</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="success-story animate">
-                <img src="Retail-Lite POS Google-Facebook Ad.png" alt="Customer Success Story">
-            </div>
-        </div>
-    </section>
-
-    <!-- Comparison Section -->
-    <section id="comparison" class="comparison">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>
-                    <span class="en">How We Compare</span>
-                    <span class="sw">Jinsi Tunavyolinganishwa</span>
-                </h2>
-                <p>See why Retail-Lite POS is the smart choice for Kenyan retailers</p>
-            </div>
-            
-            <div class="comparison-chart animate">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Retail-Lite POS</th>
-                            <th>Traditional POS</th>
-                            <th>Other Apps</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Offline Mode</td>
-                            <td class="highlight"><i class="fas fa-check"></i> Yes</td>
-                            <td><i class="fas fa-times"></i> No</td>
-                            <td><i class="fas fa-times"></i> Limited</td>
-                        </tr>
-                        <tr>
-                            <td>M-Pesa Integration</td>
-                            <td class="highlight"><i class="fas fa-check"></i> Full Support</td>
-                            <td><i class="fas fa-times"></i> Partial</td>
-                            <td><i class="fas fa-check"></i> Basic</td>
-                        </tr>
-                        <tr>
-                            <td>Affordability</td>
-                            <td class="highlight">KSh 999/month</td>
-                            <td>KSh 15,000+</td>
-                            <td>KSh 1,500/month</td>
-                        </tr>
-                        <tr>
-                            <td>Local Support</td>
-                            <td class="highlight"><i class="fas fa-check"></i> 24/7 in Kenya</td>
-                            <td>International Only</td>
-                            <td>Email Only</td>
-                        </tr>
-                        <tr>
-                            <td>Multi-User Access</td>
-                            <td class="highlight"><i class="fas fa-check"></i> Unlimited</td>
-                            <td>Extra Cost</td>
-                            <td>Limited</td>
-                        </tr>
-                        <tr>
-                            <td>Inventory Management</td>
-                            <td class="highlight"><i class="fas fa-check"></i> Advanced</td>
-                            <td><i class="fas fa-check"></i> Basic</td>
-                            <td><i class="fas fa-check"></i> Basic</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Waitlist Section -->
- <div class="waitlist-form animate delay-1">
-  <h3>
-    <span class="en" style="border-right: 1px solid #ccc; padding-right: 10px; margin-right: 10px;">Register Your Interest</span>
-    <span class="sw" style="color: #555;">Sajili Nia Yako</span>
-  </h3>
- <form id="waitlistForm" action="https://formspree.io/f/your-form-id" method="POST" novalidate></form>
-    <div class="form-group">
-      <label for="name">Full Name / Jina Kamili</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-    <div class="form-group">
-      <label for="business">Business Name / Jina la Biashara</label>
-      <input type="text" id="business" name="business" required>
-    </div>
-    <div class="form-group">
-      <label for="phone">Phone Number / Nambari ya Simu</label>
-      <input type="tel" id="phone" name="phone" required pattern="^\+?\d{7,15}$" title="Enter a valid phone number">
-    </div>
-    <div class="form-group">
-      <label for="email">Email Address / Anwani ya Barua Pepe</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div class="form-group">
-      <label for="message">Your message:</label>
-      <textarea id="message" name="message" rows="4"></textarea>
-    </div>
-    <div class="form-submit">
-      <button type="submit" class="btn btn-primary">
-       <h3 style="display: flex; align-items: center; gap: 15px;">
-  <span class="en" style="border-right: 1px solid #ccc; padding-right: 10px;">Join Waitlist</span>
-  <span class="sw" style="color: #555;">Jiunge na Orodha</span>
-</h3>
-<button type="submit" form="waitlistForm" class="btn btn-primary" style="margin-top: 15px;">Submit</button>
-    </div>
-  </form>
-  <div id="waitlistSuccess" role="alert">
-    Thank you for joining our waitlist! We will notify you when we launch.
-  </div>
-</div>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>
-                    <span class="en">Frequently Asked Questions</span>
-                    <span class="sw">Maswali Yanayoulizwa Mara kwa Mara</span>
-                </h2>
-                <p>Find answers to common questions about Retail-Lite POS</p>
-            </div>
-            
-            <div class="faq-container">
-                <div class="faq-item active animate delay-1">
-                    <div class="faq-question">
-                        <span>What devices can run Retail-Lite POS?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Retail-Lite POS runs on any PC or Android smartphone or tablet with Android 5.0 or higher. We recommend devices with at least 2GB of RAM for optimal performance. An iOS version is currently in development Use Web Version.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate delay-2">
-                    <div class="faq-question">
-                        <span>How does the offline mode work?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>When you're offline, the app stores all transaction data locally on your device. Once you connect to the internet, it automatically syncs with our secure cloud servers. You can continue selling without interruption even during network outages.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate delay-3">
-                    <div class="faq-question">
-                        <span>Is M-Pesa integration included in all plans?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, all subscription plans include M-Pesa integration at no extra cost. This allows you to receive payments directly through the app and automatically reconcile them with your sales records.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate delay-4">
-                    <div class="faq-question">
-                        <span>How much does Retail-Lite POS cost?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We offer flexible pricing plans starting from just KSh 999 per month. Early waitlist members will receive a special discount and 3 months free when we launch. Full pricing details will be announced closer to launch date.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate">
-                    <div class="faq-question">
-                        <span>Can I connect a receipt printer?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, Retail-Lite POS supports most Bluetooth thermal printers. We also offer digital receipts that can be sent via SMS or WhatsApp to your customers, saving paper and reducing costs.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate">
-                    <div class="faq-question">
-                        <span>When will Retail-Lite POS launch?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We're currently in the final testing phase and plan to launch within the next 2-3 months. Join our waitlist to be notified as soon as we launch and to secure your early access benefits.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <img src="Logo2.png" alt="Retail-Lite POS Logo">
-                    </div>
-                    <p>Retail-Lite POS is a Kenyan-built point-of-sale solution designed specifically for local retailers. Our mission is to empower small and medium businesses with affordable technology.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links-column">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#comparison">Compare</a></li>
-                        <li><a href="#waitlist">Join Waitlist</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-column">
-                    <h3 class="footer-heading">Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">User Guide</a></li>
-                        <li><a href="#">API Documentation</a></li>
-                        <li><a href="#">Partner Program</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-column">
-                    <h3 class="footer-heading">Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> info@retaillite.co.ke</li>
-                        <li><i class="fas fa-phone"></i> +254 710 450 454</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Bishop Magua Building, Nairobi, Kenya, East Africa</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 Retail-Lite POS. All rights reserved. | BGDP |  Made <!-- Integrate the form into the existing waitlist form section -->
-in Kenya for Africa</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // DOM Elements
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        const faqItems = document.querySelectorAll('.faq-item');
-        const waitlistForm = document.getElementById('waitlistForm');
-        const installBanner = document.getElementById('installBanner');
-        const installBtn = document.getElementById('installBtn');
-        const closeBannerBtn = document.getElementById('closeBannerBtn');
-        let deferredPrompt;
-
-        // Toggle mobile menu
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // FAQ accordion functionality
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Close all items
-                faqItems.forEach(faqItem => {
-                    faqItem.classList.remove('active');
-                });
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-    
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                }
-            });
-        });
-
-        // PWA Installation
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = e;
-            // Show the install banner
-            setTimeout(() => {
-                installBanner.classList.add('show');
-            }, 3000);
-        });
-
-        // Install button click handler
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                // Show the install prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log(`User response to the install prompt: ${outcome}`);
-                // Hide the install banner
-                installBanner.classList.remove('show');
-                // We no longer need the prompt
-                deferredPrompt = null;
-            }
-        });
-
-        // Close banner button
-        closeBannerBtn.addEventListener('click', () => {
-            installBanner.classList.remove('show');
-        });
-
-        // Service Worker Registration
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                })
-                .catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-
-        
-        // Animation on scroll
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.animate');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.style.opacity = 1;
-                    element.style.visibility = 'visible';
-                }
-            });
-        };
-
-        // Initial check
-        animateOnScroll();
-        
-        // Listen for scroll events
-        window.addEventListener('scroll', animateOnScroll);
-    
-    </script>
-<script>
-  // Wait until DOM is fully loaded to avoid null references
- document.addEventListener('DOMContentLoaded', () => {
-  const waitlistForm = document.getElementById('waitlistForm');
-  const successMessage = document.getElementById('waitlistSuccess');
-
-  if (waitlistForm && successMessage) {
-    waitlistForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      if (!waitlistForm.checkValidity()) {
-        waitlistForm.reportValidity();
-        return;
-      }
-
-      const formData = new FormData(waitlistForm);
-      const formParams = new URLSearchParams();
-
-      for (const pair of formData) {
-        formParams.append(pair[0], pair[1]);
-      }
-
-      try {
-        const response = await fetch(waitlistForm.action, {
-          method: waitlistForm.method,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: formParams.toString()
-        });
-
-        if (response.ok) {
-          waitlistForm.reset();
-          successMessage.style.display = 'block';
-        } else {
-          alert('Oops! There was a problem submitting your form.');
-        }
-      } catch (error) {
-        alert('Oops! There was a problem submitting your form.');
-        console.error(error);
-      }
-    });
-  } else {
-    console.error('waitlistForm or successMessage element not found in the DOM.');
-  }
-});
-</script>
    
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="testimonials">
+  <div class="container">
+    <div class="section-title animate"><h2>What Our Users Say</h2></div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card animate delay-1"><p class="testimonial-text">"Inventory errors reduced by 90 %. Offline mode saves me during outages."</p><div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user"></i></div><div class="author-info"><h4>Jane Wambui</h4><p>Electronics Shop, Nairobi</p></div></div></div>
+      <div class="testimonial-card animate delay-2"><p class="testimonial-text">"M-Pesa integration saves hours daily. Everything reconciles automatically."</p><div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user"></i></div><div class="author-info"><h4>David Ochieng</h4><p>Grocery Store, Kisumu</p></div></div></div>
+      <div class="testimonial-card animate delay-3"><p class="testimonial-text">"Analytics helped me increase profits by 30 % in two months!"</p><div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user"></i></div><div class="author-info"><h4>Sarah Muthoni</h4><p>Fashion Boutique, Mombasa</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section id="comparison" class="comparison">
+  <div class="container">
+    <div class="section-title animate"><h2>How We Compare</h2></div>
+    <div class="comparison-chart">
+      <table>
+        <thead><tr><th>Feature</th><th>Retail-Lite POS</th><th>Traditional POS</th><th>Other Apps</th></tr></thead>
+        <tbody>
+          <tr><td>Offline Mode</td><td class="highlight"><i class="fas fa-check"></i> Yes</td><td><i class="fas fa-times"></i> No</td><td>Limited</td></tr>
+          <tr><td>M-Pesa Integration</td><td class="highlight">Full Support</td><td>Partial</td><td>Basic</td></tr>
+          <tr><td>Price</td><td class="highlight">KSh 999/mo</td><td>KSh 15 000+</td><td>KSh 1 500/mo</td></tr>
+          <tr><td>Local Support</td><td class="highlight">24/7 in Kenya</td><td>International</td><td>Email only</td></tr>
+          <tr><td>Multi-User</td><td class="highlight">Unlimited</td><td>Extra cost</td><td>Limited</td></tr>
+          <tr><td>Inventory</td><td class="highlight">Advanced</td><td>Basic</td><td>Basic</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Waitlist -->
+<section id="waitlist" class="waitlist">
+  <div class="container">
+    <div class="section-title animate">
+      <h2>Join Waitlist</h2>
+      <p>Be first to know when we launch &amp; get 3 months free</p>
+    </div>
+    <div class="waitlist-form animate delay-1">
+     <form id="waitlistForm" action="https://formspree.io/f/xdkdparp" method="POST" novalidate></form>
+        <div class="form-group">
+          <label for="emailOrPhone">Email or Phone Number *</label>
+          <input type="text" id="emailOrPhone" name="emailOrPhone" placeholder="e.g. someone@mail.com or +254712345678" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Wambui">
+        </div>
+        <div class="form-group">
+          <label for="business">Business Name</label>
+          <input type="text" id="business" name="business" placeholder="Wambui Electronics">
+        </div>
+        <div class="form-group">
+          <label for="message">Optional Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you sell..."></textarea>
+        </div>
+        <button type="submit">Join Waitlist</button>
+        <div id="waitlistSuccess"><i class="fas fa-check-circle"></i> Thanks! We'll notify you at launch.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="container">
+    <div class="section-title animate"><h2>FAQ</h2></div>
+    <div class="faq-container">
+      <div class="faq-item active animate delay-1">
+        <div class="faq-question">What devices can run Retail-Lite POS? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>Any Android 5.0+ phone/tablet or Windows PC. 2 GB RAM recommended.</p></div>
+      </div>
+      <div class="faq-item animate delay-2">
+        <div class="faq-question">How does offline mode work? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>Stores data locally and syncs automatically when you’re back online.</p></div>
+      </div>
+      <div class="faq-item animate delay-3">
+        <div class="faq-question">Is M-Pesa integration included? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>Yes – all plans include full M-Pesa support at no extra cost.</p></div>
+      </div>
+      <div class="faq-item animate">
+        <div class="faq-question">How much does it cost? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>Plans start at KSh 999 / month. Wait-list members get 3 months free at launch.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-about">
+        <div class="footer-logo"><img src="Logo2.png" alt="Retail-Lite POS Logo"/></div>
+        <p>Retail-Lite POS is Kenyan-built for local retailers. Empowering SMEs with affordable tech.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="https://wa.me/254732655941"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links-column">
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#waitlist">Join Waitlist</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-column">
+        <h3 class="footer-heading">Contact</h3>
+        <ul class="footer-links">
+          <li><i class="fas fa-envelope"></i> info@retaillite.co.ke</li>
+          <li><i class="fas fa-phone"></i> +254 710 450 454 | +254 732 655 941</li>
+          <li><i class="fas fa-map-marker-alt"></i> Bishop Magua Building, Nairobi</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Retail-Lite POS. All rights reserved. BGDP. Made in Kenya for Africa.</div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+  /* Mobile menu */
+  const mobileBtn=document.getElementById('mobileMenuBtn');
+  const navLinks=document.getElementById('navLinks');
+  mobileBtn.addEventListener('click',()=>{navLinks.classList.toggle('active')});
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-question').forEach(q=>{
+    q.addEventListener('click',()=>{q.parentElement.classList.toggle('active')});
+  });
+
+  /* Wait-list form */
+  document.addEventListener('DOMContentLoaded',()=>{
+    const form=document.getElementById('waitlistForm');
+    const success=document.getElementById('waitlistSuccess');
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      if(!form.checkValidity()){form.reportValidity();return;}
+      try{
+        const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+        if(res.ok){form.reset();success.style.display='block';}else{alert('Error – please try again');}
+      }catch{alert('Network error – please try again');}
+    });
+  });
+
+  /* PWA install banner */
+  let deferredPrompt=null;
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBanner').classList.add('show')});
+  document.getElementById('installBtn').addEventListener('click',()=>{deferredPrompt?.prompt();deferredPrompt=null;document.getElementById('installBanner').classList.remove('show')});
+  document.getElementById('closeBannerBtn').addEventListener('click',()=>document.getElementById('installBanner').classList.remove('show'));
+</script>
 </body>
 </html>
