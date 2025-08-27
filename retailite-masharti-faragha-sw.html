@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Masharti & Faragha (SW) · Retail-Lite POS</title>
+ <link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#007928;
+  --midnight:#0078c9;
+  --green:#008a94;
+  --blue:#2563EB;
+  --yellow:#FACC15;
+  --slate:#94A3B8;
+  --bg:#F3F7FB;
+  --ink:#0F172A;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;color:var(--ink);background:var(--bg);}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:960px;margin:0 auto;padding:24px}
+.hero{background:linear-gradient(135deg,var(--navy),var(--midnight));color:white;padding:56px 24px;position:relative;overflow:hidden}
+.hero .band{position:absolute;inset:auto -20% -40% -20%;height:260px;background:radial-gradient(closest-side,rgba(37,99,235,.35),transparent 70%)}
+.brand{display:flex;align-items:center;gap:16px}
+.brand img{height:64px;width:auto;filter: drop-shadow(0 4px 16px rgba(0,0,0,.25));}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#E5FDF0;padding:6px 10px;border-radius:999px;font-size:12px}
+.cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+.btn{display:inline-block;border-radius:10px;padding:12px 18px;font-weight:600}
+.btn-primary{background:var(--green);color:#07130F}
+.btn-secondary{background:transparent;border:1px solid rgba(255,255,255,.45);color:white}
+.card{background:white;border:1px solid #e8eef7;border-radius:16px;padding:20px;box-shadow:0 8px 24px rgba(16,24,40,.05)}
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.section-title{font-size:22px;margin:24px 0 12px}
+.kicker{text-transform:uppercase;letter-spacing:.1em;color:var(--slate);font-size:12px;font-weight:700;margin-bottom:6px}
+.list{padding-left:18px;line-height:1.7}
+footer{color:var(--slate);text-align:center;padding:40px 16px}
+hr.div{border:0;border-top:1px solid #e8eef7;margin:24px 0}
+.cover-card{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.table{width:100%;border-collapse:collapse;font-size:14px}
+.table th,.table td{border:1px solid #e8eef7;padding:10px;text-align:left;vertical-align:top}
+.table th{background:#f8fafc}
+@media (max-width:720px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .brand img{height:52px}
+}
+@media print{
+  .hero,.cta{display:none}
+  body{background:white}
+  .card{box-shadow:none}
+}
+@media print {
+  footer, .footer, .print-footer {
+    display: none !important;
+  }
+}
+@media print {
+    footer {
+        display: none !important;
+    }
+    /* If using a specific footer class */
+    .print-footer, .pdf-footer {
+        visibility: hidden;
+        height: 0;
+    }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="container">
+    <div class="brand">
+      <img src="logo2.png" alt="Retail-Lite POS logo"/>
+      <div>
+        <div class="kicker">www.retailitepos.co.ke</div>
+        <h1 style="margin:4px 0 0;font-size:30px;line-height:1.2">Retail‑Lite POS — Masharti ya Matumizi & Sera ya Faragha</h1>
+        <p style="opacity:.9;margin:8px 0 0">Imarisha biashara yako. Kwanza nje ya mtandao. Inatii Sheria ya Ulinzi wa Data Kenya 2019.</p>
+        <div class="badges"><span class='badge'>Kwanza Offline</span><span class='badge'>M‑Pesa Ready ,Airtel Money,MTN Money</span><span class='badge'>Ukusanyaji wa Data Mdogo</span><span class='badge'>Kiingereza & Kiswahili</span></div>
+        <div class="cta">
+          <a class="btn btn-primary" href="#" onclick="window.print();return false;">Download PDF</a>
+          <a class="btn btn-secondary" href="mailto:support@retailitepos.co.ke">Contact Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="band"></div>
+</header>
+
+<main class="container" style="margin-top:-28px">
+  <div class="card">
+    <h2 class="section-title">1. Utangulizi</h2>
+<p>Retail‑Lite POS ni suluhisho la mauzo linaloanza na <i>nje ya mtandao</i> kwa wafanyabiashara wa Kenya. Hati hii inaeleza Masharti ya Matumizi na Sera ya Faragha.</p>
+<h2 class="section-title">2. Muundo wa Data — Kwanza Nje ya Mtandao</h2>
+<ul class="list">
+<li><b>Inabaki kwenye kifaa:</b> Data ya POS (mauzo, hesabu, risiti, wateja) inabaki kwenye kifaa chako. <b>Hatuikusanyi wala kuihifadhi</b> kwenye seva zetu.</li>
+<li><b>Chaguo lako kuhifadhi/kusafirisha:</b> Unaweza kuhifadhi nakala rudufu au kutuma data kwa barua pepe au hifadhi ya nje wakati wowote.</li>
+<li><b>Mtandao kwa mambo muhimu tu:</b> Mtandao unahitajika tu kwa kuingia akaunti, usawazishaji wa hiari, masasisho, na uthibitishaji wa malipo.</li>
+<li><b>Tunakusanya data ndogo tu:</b> taarifa za mbinu ya malipo (mfano njia ya M‑Pesa, Airtel Money, kadi), namba ya simu kwa uthibitishaji, na jina la biashara.</li>
+</ul>
+<h2 class="section-title">3. Uzingatiaji wa Sheria ya Ulinzi wa Data Kenya (2019)</h2>
+<ul class="list">
+<li>Sisi ni <b>msimamizi wa data</b> kwa data ndogo binafsi hapo juu; kwa data ya POS iliyopo kwenye kifaa chako, <b>wewe</b> ndiye msimamizi.</li>
+<li>Msingi wa kisheria: utekelezaji wa mkataba na maslahi halali ya usalama wa akaunti na uthibitishaji wa malipo.</li>
+<li>Hatuuzi data binafsi. Kushiriki kunafanyika tu na watoa huduma muhimu (mfano milango ya malipo) au pale sheria inapohitaji.</li>
+</ul>
+<h2 class="section-title">4. Wajibu Wako</h2>
+<ul class="list">
+<li>Linda vifaa vyako; tumia nywila madhubuti na uwashe ulinzi wa kifaa.</li>
+<li>Fanya nakala rudufu mara kwa mara iwapo unategemea historia ya muda mrefu.</li>
+<li>Tumia Retail‑Lite POS kwa shughuli halali na kufuata sheria za kodi na ulinzi wa watumiaji.</li>
+</ul>
+<h2 class="section-title">5. Haki Zako</h2>
+<ul class="list">
+<li>Upatikanaji, marekebisho, kufutwa (kadri sheria inavyoruhusu), na kuondoa ridhaa kwa data ndogo tunayodhibiti.</li>
+<li>Wasiliana: <a href="mailto:privacy@retailitepos.co.ke">privacy@retailitepos.co.ke</a>.</li>
+</ul>
+<h2 class="section-title">6. Usalama & Uhifadhi</h2>
+<ul class="list">
+<li>Usimbaji fiche wakati wa kusafirisha na tunapohifadhi data binafsi tunayoshughulikia; ulinzi wa data kwenye kifaa chako unategemea mipangilio ya kifaa chako.</li>
+<li>Tunahifadhi data binafsi ndogo tu kwa muda unaohitajika kwa akaunti yako na wajibu wa kisheria; rekodi za biashara unazohifadhi ndani ya kifaa ziko chini ya udhibiti wako.</li>
+</ul>
+<h2 class="section-title">7. Malipo, Ada & Uwajibikaji</h2>
+<ul class="list">
+<li>Malipo ya usajili yanafanyika kupitia watoa huduma salama (mfano M‑Pesa,Airtel Money, MTN Money, kadi). Hitilafu za wahusika wa tatu ziko nje ya uwezo wetu.</li>
+<li>Mauzo ya nje ya mtandao yatatayarishwa kusawazishwa baadaye ukichagua. Unawajibika kwa usalama wa kifaa chako na mafaili uliyoyasafirisha.</li>
+</ul>
+<h2 class="section-title">8. Mawasiliano</h2>
+<p>Barua pepe: <a href="mailto:support@retailitepos.co.ke">support@retailitepos.co.ke</a> · Tovuti: <a href="https://www.retailitepos.co.ke">www.retailitepos.co.ke</a></p>
+
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 · Retail-Lite POS — Built for Kenya and Africa. English & Kiswahili support.
+</footer>
+</body>
+</html>

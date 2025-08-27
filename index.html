@@ -9,542 +9,2063 @@
   <link rel="manifest" href="/manifest.json"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
-    /* ----------  ROOT  ---------- */
-    :root{
-      --blue:#038343;
-      --green:#004883;
-      --gold:#F1C40F;
-      --black:#000;
-      --white:#fff;
-      --gray:#95A5A6;
-      --light-blue:#E3F2FD;
-      --dark-blue:#1565C0;
-      --box-shadow:0 5px 15px rgba(0,0,0,.1);
-      --border-radius:10px;
-      --transition:all .3s ease;
+    /* ----------  ROOT & VARIABLES  ---------- */
+    :root {
+      --primary: #038343;
+      --primary-dark: #026633;
+      --secondary: #004883;
+      --secondary-dark: #003366;
+      --accent: #F1C40F;
+      --accent-dark: #D4AC0D;
+      --text: #2C3E50;
+      --text-light: #7F8C8D;
+      --bg: #FFFFFF;
+      --bg-alt: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --border: #E0E0E0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --shadow-hover: 0 15px 40px rgba(0,0,0,0.15);
+      --border-radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --header-height: 80px;
     }
-      .sw {
-        font-weight: bold;
-        font-size: 1.3em;
-        color: #F1C40F; /* yellow color */
+
+    [data-theme="dark"] {
+      --primary: #04AA6D;
+      --primary-dark: #038C5A;
+      --secondary: #3D85C6;
+      --secondary-dark: #2B6CB0;
+      --accent: #F39C12;
+      --accent-dark: #E67E22;
+      --text: #ECF0F1;
+      --text-light: #BDC3C7;
+      --bg: #121212;
+      --bg-alt: #1E1E1E;
+      --card-bg: #1E1E1E;
+      --border: #2D2D2D;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+      --shadow-hover: 0 15px 40px rgba(0,0,0,0.4);
     }
-    .feature-icon img {
-  width: 40px;       /* Set appropriate icon size */
-  height: 40px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-.app-screens {
-  text-align: center;
-  margin: 40px 0;
+
+    /* ----------  BASE STYLES  ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ----------  BUTTONS  ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(194, 214, 204, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(3, 131, 67, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(3, 131, 67, 0.2);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      color: var(--bg);
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(241, 196, 15, 0.3);
+    }
+
+    /* Magic UI Buttons */
+    .btn-magic {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-magic::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
+    }
+
+    .btn-magic:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-magic:hover::before {
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* ----------  HEADER  ---------- */
+    header {
+      background: var(--bg);
+      padding: 15px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    /* ---------- HEADER (optimized for mobile) ---------- */
+header {
+  background: var(--bg);
+  padding: 10px 20px; /* reduced padding for mobile */
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.app-screens img {
-  max-width: 80%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
-}
-
-.app-screens img:hover {
-  transform: scale(1.05);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .app-screens {
-    margin: 30px 10px;
-  }
-
-  .app-screens img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  }
-}
-    /* WhatsApp Button */
-        .whatsapp-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-            transition: all 0.3s ease;
-            font-size: 30px;
-            text-decoration: none;
-        }
-        
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
-        }
-        .language-toggle {
-  margin-left: auto; /* push to right */
+.header-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
   gap: 10px;
 }
 
-.language-toggle button {
-  background: transparent;
-  border: 1px solid var(--blue, #1e88e5);
-  color: var(--blue, #1e88e5);
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+.logo-container h1 {
+  font-size: 1.2rem; /* slightly smaller */
   font-weight: 600;
-  transition: background-color 0.3s, color 0.3s;
+  color: var(--text);
 }
 
-.language-toggle button.active,
-.language-toggle button:hover {
-  background-color: var(--blue, #1e88e5);
-  color: #fff;
-}
-/* Ensure language toggle aligns right inside header nav */
-header nav {
+nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
-/* Optional: keep nav-links and language-toggle aligned nicely */
 .nav-links {
-  margin-left: 20px;
-  flex-grow: 1;
   display: flex;
-  justify-content: flex-start;
+  list-style: none;
+  gap: 15px;
 }
-    /* ----------  RESET  ---------- */
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans",sans-serif;color:var(--black);background:#f9f9f9;line-height:1.6;overflow-x:hidden}
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
-    section{padding:80px 0}
-    .section-title{text-align:center;margin-bottom:50px}
-    .section-title h2{font-size:2.5rem;margin-bottom:15px;color:var(--dark-blue)}
-    .section-title p{font-size:1.1rem;color:var(--gray);max-width:700px;margin:0 auto}
-    .btn{display:inline-block;padding:12px 28px;border-radius:30px;font-weight:600;font-size:1rem;text-decoration:none;text-align:center;cursor:pointer;transition:var(--transition);border:none}
-    .btn-primary{background:var(--blue);color:var(--white)}
-    .btn-primary:hover{background:var(--dark-blue);transform:translateY(-3px);box-shadow:var(--box-shadow)}
-    .btn-secondary{background:transparent;color:var(--blue);border:2px solid var(--blue)}
-    .btn-secondary:hover{background:var(--light-blue);transform:translateY(-3px);box-shadow:var(--box-shadow)}
-    /* ----------  HEADER  ---------- */
-    header{background:var(--white);padding:15px 0;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:1000}
-    nav{display:flex;justify-content:space-between;align-items:center}
-    .logo-container{display:flex;align-items:center}
-    .logo-container img{height:50px;margin-right:10px}
-    .logo-container h1{font-size:1.5rem;font-weight:700;color:var(--black)}
-    .nav-links{display:flex;list-style:none}
-    .nav-links li{margin-left:20px}
-    .nav-links a{text-decoration:none;color:var(--black);font-weight:500;font-size:1rem;transition:color .3s}
-    .nav-links a:hover{color:var(--blue)}
-    .mobile-menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--dark-blue)}
+
+.nav-links a {
+  font-size: 0.9rem; /* smaller font for mobile */
+  font-weight: 500;
+}
+
+.mobile-menu-btn {
+  display: block; /* show mobile menu button */
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* Align Get Started button smaller and normal */
+.btn-get-started {
+  padding: 8px 20px; /* smaller padding */
+  font-size: 0.9rem;
+  border-radius: 25px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+/* ---------- HEADER REFINEMENT FOR MOBILE VIEW ---------- */
+@media (max-width: 768px) {
+  header nav {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1 1 auto;
+  }
+
+  .logo-container h1 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .nav-links {
+    display: none; /* hide nav links by default on mobile */
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    background: var(--bg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 10px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0 15px;
+  }
+
+  .nav-links li a {
+    font-size: 1rem;
+    padding: 10px 15px;
+    display: block;
+  }
+
+  .language-toggle {
+    order: 3;
+    margin-left: auto;
+  }
+
+  .theme-toggle {
+    order: 4;
+    margin-left: 15px;
+  }
+
+  .btn-get-started {
+    order: 2;
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .mobile-menu-btn {
+    order: 1;
+    display: block;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  nav {
+    flex-basis: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-get-started {
+    margin-left: auto;
+  }
+}
+    
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      height: 50px;
+    }
+
+    .logo-container h1 {
+      font-size: 1.rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 1rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: var(--bg-alt);
+      border-radius: 50px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      margin-left: 15px;
+      cursor: pointer;
+      position: relative;
+      width: 60px;
+      height: 30px;
+      border: 1px solid var(--border);
+    }
+
+    .theme-toggle-handle {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      transition: var(--transition);
+      left: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    [data-theme="dark"] .theme-toggle-handle {
+      left: 33px;
+    }
+
+    .theme-toggle i {
+      font-size: 14px;
+      color: white;
+    }
+
+    /* Language Toggle */
+    .language-toggle {
+      display: flex;
+      gap: 5px;
+      margin-left: 15px;
+      background: var(--bg-alt);
+      border-radius: 50px;
+      padding: 5px;
+    }
+
+    .language-toggle button {
+      background: transparent;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .language-toggle button.active {
+      background: var(--primary);
+      color: white;
+    }
+
     /* ----------  HERO  ---------- */
-    .hero{background:linear-gradient(135deg,var(--blue) 0%,var(--dark-blue) 100%);color:var(--white);padding:100px 0 80px;position:relative;overflow:hidden}
-    .hero::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("ffffff' fill-opacity='.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
-    .hero-content{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;position:relative;z-index:2}
-    .hero-text{flex:1;min-width:300px;padding-right:30px}
-    .hero-text h1{font-size:2.8rem;margin-bottom:20px;line-height:1.2}
-    .hero-text .tagline{font-size:1.8rem;margin-bottom:25px;color:var(--gold);font-weight:600}
-    .hero-text p{font-size:1.2rem;margin-bottom:30px;line-height:1.5}
-    .hero-image{flex:1;min-width:300px;text-align:center;margin-top:30px}
-    .hero-image img{max-width:100%;height:auto;max-height:500px;border-radius:var(--border-radius);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 120px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100' opacity='0.05'%3E%3Ccircle cx='50' cy='50' r='40' fill='white' /%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+      padding-right: 30px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-text .tagline {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-text p {
+      font-size: 1.3rem;
+      margin-bottom: 35px;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      max-height: 500px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      transform: perspective(800px) rotateY(-10deg);
+      transition: var(--transition);
+    }
+
+    .hero-image img:hover {
+      transform: perspective(800px) rotateY(0);
+    }
+
     /* ----------  FEATURES  ---------- */
-    .features{background:var(--white)}
-    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-top:40px}
-    .feature-card{background:var(--white);border-radius:var(--border-radius);padding:30px;box-shadow:var(--box-shadow);transition:var(--transition);height:100%}
-    .feature-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(0,0,0,.15)}
-    .feature-icon{width:70px;height:70px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--light-blue);color:var(--blue);font-size:28px}
-    .feature-card h3{font-size:1.4rem;margin-bottom:15px;color:var(--black)}
-    .feature-card p{font-size:1rem;color:var(--gray);line-height:1.6}
+    .features {
+      background: var(--bg-alt);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      height: 100%;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 0;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .feature-card:hover::before {
+      height: 100%;
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      font-size: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--text);
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
     /* ----------  HOW IT WORKS  ---------- */
-    .how-it-works{background:var(--light-blue)}
-    .steps{display:flex;flex-wrap:wrap;justify-content:center;margin-top:40px}
-    .step{flex:1;min-width:250px;text-align:center;padding:20px;margin:20px 0}
-    .step-number{width:60px;height:60px;background:var(--blue);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:24px;margin:0 auto 20px}
-    .step h3{font-size:1.3rem;margin-bottom:15px;color:var(--black)}
-    .step p{font-size:1rem;color:var(--gray);line-height:1.6}
+    .how-it-works {
+      background: var(--bg);
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      z-index: 0;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      padding: 20px;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-number {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 28px;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .step h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--text);
+    }
+
+    .step p {
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .app-screens {
+      text-align: center;
+      margin: 60px 0 0;
+    }
+
+    .app-screens img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+    }
+
+    .app-screens img:hover {
+      transform: scale(1.02);
+    }
+
     /* ----------  TESTIMONIALS  ---------- */
-    .testimonials{background:var(--white)}
-    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-top:40px}
-    .testimonial-card{background:var(--white);border-radius:var(--border-radius);padding:30px;box-shadow:var(--box-shadow);position:relative}
-    .testimonial-card::before{content:'"';position:absolute;top:15px;left:15px;font-size:80px;color:var(--light-blue);font-family:serif;line-height:1;opacity:.5}
-    .testimonial-text{font-size:1rem;line-height:1.7;margin-bottom:20px;font-style:italic}
-    .testimonial-author{display:flex;align-items:center}
-    .author-avatar{width:50px;height:50px;border-radius:50%;background:var(--light-blue);margin-right:15px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:20px}
-    .author-info h4{font-weight:700;font-size:1rem;margin-bottom:5px}
-    .author-info p{font-size:.9rem;color:var(--gray)}
+    .testimonials {
+      background: var(--bg-alt);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      border: 1px solid var(--border);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 80px;
+      color: var(--primary);
+      opacity: 0.1;
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .author-info h4 {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      color: var(--text);
+    }
+
+    .author-info p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
     /* ----------  COMPARISON  ---------- */
-    .comparison{background:var(--light-blue)}
-    .comparison-chart{overflow-x:auto;margin-top:40px}
-    table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--border-radius);overflow:hidden;box-shadow:var(--box-shadow)}
-  th,td{padding:15px;text-align:left;border-bottom:1px solid #eee}
-  th{background:var(--blue);color:var(--white);font-weight:600}
-  tr:nth-child(even){background:#f9f9f9}
-  .highlight{background:rgba(30,136,229,.1)!important;font-weight:600}
+    .comparison {
+      background: var(--bg);
+    }
+
+    .comparison-chart {
+      overflow-x: auto;
+      margin-top: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    tr:nth-child(even) {
+      background: var(--bg-alt);
+    }
+
+    .highlight {
+      background: rgba(3, 131, 67, 0.1) !important;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
     /* ----------  WAITLIST FORM  ---------- */
-    .waitlist-form{max-width:500px;margin:0 auto;background:var(--white);border-radius:12px;padding:40px;box-shadow:0 8px 25px rgba(0,0,0,.08)}
-    .waitlist-form h3{font-size:1.8rem;margin-bottom:25px;text-align:center;color:var(--blue)}
-    .waitlist-form .form-group{margin-bottom:20px}
-    .waitlist-form label{display:block;font-weight:600;margin-bottom:6px;color:#333}
-    .waitlist-form input,.waitlist-form textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;font-size:1rem;transition:border .3s}
-    .waitlist-form input:focus,.waitlist-form textarea:focus{border-color:var(--blue);outline:none}
-    .waitlist-form textarea{resize:vertical;min-height:100px}
-    .waitlist-form button{width:100%;background:var(--blue);color:#fff;font-size:1.1rem;font-weight:600;padding:14px;border:none;border-radius:6px;cursor:pointer;transition:background .3s}
-    .waitlist-form button:hover{background:var(--brand-dark)}
-    #waitlistSuccess{display:none;text-align:center;color:var(--blue);font-weight:600;margin-top:15px}
+    .waitlist {
+      background: var(--bg-alt);
+    }
+
+    .waitlist-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 50px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .waitlist-form h3 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(3, 131, 67, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .waitlist-form button {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 10px 20px rgba(3, 131, 67, 0.2);
+    }
+
+    .waitlist-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(3, 131, 67, 0.3);
+    }
+
+    #waitlistSuccess {
+      display: none;
+      text-align: center;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(3, 131, 67, 0.1);
+      border-radius: 12px;
+    }
+
     /* ----------  FAQ  ---------- */
-    .faq{background:var(--white)}
-    .faq-container{max-width:900px;margin:40px auto 0}
-    .faq-item{margin-bottom:15px;border-radius:var(--border-radius);overflow:hidden;box-shadow:var(--box-shadow)}
-    .faq-question{background:var(--light-blue);padding:20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:1.1rem;color:var(--black);transition:background .3s}
-    .faq-question:hover{background:#d0e6f9}
-    .faq-question i{transition:transform .3s}
-    .faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;background:var(--white)}
-    .faq-answer p{padding:20px 20px 0;font-size:1rem;line-height:1.6;color:var(--gray)}
-    .faq-item.active .faq-question{background:var(--blue);color:var(--white)}
-    .faq-item.active .faq-question i{transform:rotate(180deg)}
-    .faq-item.active .faq-answer{max-height:300px;padding-bottom:20px}
+    .faq {
+      background: var(--bg);
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: 40px auto 0;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .faq-question {
+      background: var(--card-bg);
+      padding: 25px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background: var(--bg-alt);
+    }
+
+    .faq-question i {
+      transition: transform 0.3s;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: var(--card-bg);
+    }
+
+    .faq-answer p {
+      padding: 25px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-light);
+    }
+
+    .faq-item.active .faq-question {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
     /* ----------  FOOTER  ---------- */
-    footer{background:var(--black);color:var(--white);padding:60px 0 30px}
-    .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-bottom:40px}
-    .footer-logo{margin-bottom:20px}
-    .footer-logo img{height:50px}
-    .footer-about p{font-size:1rem;line-height:1.6;margin-bottom:20px;color:var(--gray)}
-    .footer-heading{font-weight:700;font-size:1.2rem;margin-bottom:20px;color:var(--white)}
-    .footer-links{list-style:none}
-    .footer-links li{margin-bottom:12px}
-    .footer-links a{text-decoration:none;color:var(--gray);transition:color .3s}
-    .footer-links a:hover{color:var(--blue)}
-    .social-links{display:flex;margin-top:20px}
-    .social-links a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--white);margin-right:10px;transition:background .3s;font-size:1.2rem}
-    .social-links a:hover{background:var(--blue)}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;color:var(--gray);font-size:.9rem}
+    footer {
+      background: var(--text);
+      color: white;
+      padding: 80px 0 40px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo {
+      margin-bottom: 25px;
+    }
+
+    .footer-logo img {
+      height: 60px;
+    }
+
+    .footer-about p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .footer-heading {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      color: rgb(16, 134, 61);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.7);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links a:hover {
+      color: rgb(0, 0, 0);
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      margin-top: 25px;
+      gap: 15px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgb(0, 0, 0);
+      transition: var(--transition);
+      font-size: 1.3rem;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(8, 0, 0, 0.1);
+      padding-top: 30px;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 1rem;
+    }
+
+    /* ----------  WHATSAPP BUTTON  ---------- */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background: #25D366;
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+      transition: var(--transition);
+      font-size: 32px;
+      text-decoration: none;
+    }
+
+    .whatsapp-button:hover {
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+    }
+
     /* ----------  INSTALL BANNER  ---------- */
-    .install-banner{position:fixed;bottom:0;left:0;right:0;background:var(--dark-blue);color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:1001;transform:translateY(100%);transition:transform .3s ease;box-shadow:0 -2px 10px rgba(0,0,0,.1)}
-    .install-banner.show{transform:translateY(0)}
-    .install-banner-content{display:flex;align-items:center}
-    .install-banner-content img{width:40px;height:40px;margin-right:15px;border-radius:8px}
-    .install-buttons button{background:var(--gold);color:var(--black);border:none;padding:8px 15px;border-radius:20px;font-weight:600;cursor:pointer;margin-left:10px}
-    .install-buttons .close-btn{background:transparent;color:#fff;font-size:1.5rem;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
-    /* ----------  RESPONSIVE  ---------- */
-    @media(max-width:992px){
-      .hero-content{flex-direction:column;text-align:center}
-      .hero-text{padding-right:0;margin-bottom:40px}
+    .install-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--secondary);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1001;
+      transform: translateY(100%);
+      transition: var(--transition);
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
     }
-    @media(max-width:768px){
-      .nav-links{display:none;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:var(--white);padding:20px;box-shadow:0 5px 10px rgba(0,0,0,.1)}
-      .nav-links.active{display:flex}
-      .mobile-menu-btn{display:block}
+
+    .install-banner.show {
+      transform: translateY(0);
     }
-    @media(max-width:480px){
-      .btn{width:100%;margin-bottom:10px}
+
+    .install-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
+
+    .install-banner-content img {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+    }
+
+    .install-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .install-buttons button {
+      background: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .install-buttons button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-3px);
+    }
+
+    .install-buttons .close-btn {
+      background: transparent;
+      color: white;
+      font-size: 1.8rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .install-buttons .close-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ----------  RESPONSIVE STYLES  ---------- */
+    @media (max-width: 992px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text {
+        padding-right: 0;
+        margin-bottom: 50px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .steps::before {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title h2 {
+        font-size: 2.3rem;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-top: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .waitlist-form {
+        padding: 30px;
+      }
+
+      .install-banner {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .install-banner-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-text .tagline {
+        font-size: 1.6rem;
+      }
+
+      .btn {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .feature-card, .testimonial-card {
+        padding: 25px 20px;
+      }
+
+      .waitlist-form {
+        padding: 25px 20px;
+      }
+    }
+
     /* ----------  ANIMATIONS  ---------- */
-    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .animate{animation:fadeIn .6s ease forwards}
-    .delay-1{animation-delay:.1s}
-    .delay-2{animation-delay:.2s}
-    .delay-3{animation-delay:.3s}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    /* Language-specific styles */
+    .sw, .sw-light {
+      display: none;
+    }
+
+    .language-sw .sw {
+      display: block;
+    }
+
+    .language-sw .sw-light {
+      display: inline;
+    }
+
+    .language-sw .en {
+      display: none;
+    }
   </style>
 </head>
 <body>
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/254732655941" class="whatsapp-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-   
+  <!-- Install Banner -->
+  <div class="install-banner" id="installBanner">
+    <div class="install-banner-content">
+      <img src="logo2.png" alt="Retail-Lite POS">
+      <p>Install Retail-Lite POS for a better experience</p>
+    </div>
+    <div class="install-buttons">
+      <button id="installBtn" class="btn-magic">Install Now</button>
+      <button class="close-btn" id="closeBannerBtn">×</button>
+    </div>
+  </div>
 
-    <a href="https://wa.me/254732655941" class="whatsapp-button" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-     <!-- Install Banner -->
-    <div class="install-banner" id="installBanner">
-        <div class="install-banner-content">
-            <img src="Logo2.png" alt="Retail-Lite POS">
-            <p>Install Retail-Lite POS for a better experience</p>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo-container">
+          <img src="logo2.png" alt="Logo"/>
+          <h1>Retail-Lite POS</h1>
         </div>
-        <div class="install-buttons">
-            <button id="installBtn">Install Now</button>
-            <button class="close-btn" id="closeBannerBtn">×</button>
-        </div>
-    </div>
-    
-
-<!-- Header -->
-<header>
-  <div class="container">
-    <nav>
-      <div class="logo-container">
-        <img src="Logo2.png" alt="Retail-Lite POS Logo"/>
-        <h1>Retail-Lite POS</h1>
-      </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#comparison">Compare</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-      <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-    </nav>
-  </div>
-</header>
-
-<!-- Hero -->
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-text animate">
-        <h1>Retail-Lite POS</h1>
-       <p class="tagline">
-                        <span class="en">Power Your Biashara. Online or Offline.</span>
-                        <span class="sw-light">Imarisha Biashara Yako. Mtandaoni au Nje ya Mtandao.</span>
-                    </p>
-        <p>The affordable, reliable point-of-sale solution designed for Kenyan retailers. Run your business seamlessly with or without internet.</p>
-        <a href="#waitlist" class="btn btn-primary">Join Waitlist - Jiunge na Orodha</a>
-        <a href="#features" class="btn btn-secondary">Learn More</a>
-      </div>
-      <div class="hero-image animate delay-1">
-        <img src="POS-Hero 1.png" alt="Retail-Lite POS App Interface"/>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Features -->
-<section id="features" class="features">
-  <div class="container">
-    <div class="section-title animate"><h2>Powerful Features</h2>
-        <span class="sw">Vipengele Vyenye Nguvu</span><bold></bold>
-        <p>Everything you need to run your retail business efficiently</p></div>
-    <div class="features-grid">
-      <div class="feature-card animate delay-1">
-  <div class="feature-icon">
-    <img src="disconnected_5932450.png" alt="Offline Mode Icon" />
-  </div>
-  <h3>Offline Mode</h3>
-  <p>Keep selling even without internet. Data syncs when you’re back online.</p>
-</div>
-      <div class="feature-card animate delay-2"><div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div><h3>M-Pesa Integration</h3><p>Accept & track M-Pesa payments automatically.</p></div>
-      <div class="feature-card animate delay-3"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Smart Analytics</h3><p>Insights on best-sellers, peak hours & customers.</p></div>
-      <div class="feature-card animate delay-1"><div class="feature-icon"><i class="fas fa-boxes"></i></div><h3>Inventory Management</h3><p>Real-time stock levels and low-stock alerts.</p></div>
-      <div class="feature-card animate delay-2"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Multi-User Access</h3><p>Add staff with custom permissions.</p></div>
-      <div class="feature-card animate delay-3"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>Local Support</h3><p>Kenya-based support in English & Swahili.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- How It Works -->
-<section id="how-it-works" class="how-it-works">
-  <div class="container">
-    <div class="section-title animate"><h2>How It Works</h2><p>Get started in three simple steps</p></div>
-    <div class="steps">
-      <div class="step animate delay-1"><div class="step-number">1</div><h3>Download</h3><p>Get the app from Google Play or our website</p></div>
-      <div class="step animate delay-2"><div class="step-number">2</div><h3>Sign Up</h3><p>Create your account & set up your store</p></div>
-      <div class="step animate delay-3"><div class="step-number">3</div><h3>Start Selling</h3><p>Add products and begin processing sales</p></div>
-    </div>
-  </div>
-       <div class="app-screens animate">
-                <img src="POS-Hero 1.png" alt="Retail-Lite POS App Screens">
-            </div>
-        </div>
-   
-</section>
-
-<!-- Testimonials -->
-<section id="testimonials" class="testimonials">
-  <div class="container">
-    <div class="section-title animate"><h2>What Our Users Say</h2></div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card animate delay-1"><p class="testimonial-text">"Inventory errors reduced by 90 %. Offline mode saves me during outages."</p><div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user"></i></div><div class="author-info"><h4>Jane Wambui</h4><p>Electronics Shop, Nairobi</p></div></div></div>
-      <div class="testimonial-card animate delay-2"><p class="testimonial-text">"M-Pesa integration saves hours daily. Everything reconciles automatically."</p><div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user"></i></div><div class="author-info"><h4>David Ochieng</h4><p>Grocery Store, Kisumu</p></div></div></div>
-      <div class="testimonial-card animate delay-3"><p class="testimonial-text">"Analytics helped me increase profits by 30 % in two months!"</p><div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user"></i></div><div class="author-info"><h4>Sarah Muthoni</h4><p>Fashion Boutique, Mombasa</p></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Comparison -->
-<section id="comparison" class="comparison">
-  <div class="container">
-    <div class="section-title animate"><h2>How We Compare</h2></div>
-    <div class="comparison-chart">
-      <table>
-        <thead><tr><th>Feature</th><th>Retail-Lite POS</th><th>Traditional POS</th><th>Other Apps</th></tr></thead>
-        <tbody>
-          <tr><td>Offline Mode</td><td class="highlight"><i class="fas fa-check"></i> Yes</td><td><i class="fas fa-times"></i> No</td><td>Limited</td></tr>
-          <tr><td>M-Pesa Integration</td><td class="highlight">Full Support</td><td>Partial</td><td>Basic</td></tr>
-          <tr><td>Price</td><td class="highlight">KSh 999/mo</td><td>KSh 15 000+</td><td>KSh 1 500/mo</td></tr>
-          <tr><td>Local Support</td><td class="highlight">24/7 in Kenya</td><td>International</td><td>Email only</td></tr>
-          <tr><td>Multi-User</td><td class="highlight">Unlimited</td><td>Extra cost</td><td>Limited</td></tr>
-          <tr><td>Inventory</td><td class="highlight">Advanced</td><td>Basic</td><td>Basic</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Waitlist -->
-<section id="waitlist" class="waitlist">
-  <div class="container">
-    <div class="section-title animate">
-      <h2>Join Waitlist</h2>
-      <p>Be first to know when we launch &amp; get 3 months free</p>
-    </div>
-    <div class="waitlist-form animate delay-1">
-      <form id="waitlistForm" action="https://formspree.io/f/xdkdparp" method="POST" novalidate>
-        <label for="emailOrPhone">Email or Phone Number *</label>
-        <input type="text" id="emailOrPhone" name="emailOrPhone" placeholder="e.g. someone@mail.com or +254712345678" required>
-
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Jane Wambui">
-        </div>
-
-        <div class="form-group">
-          <label for="business">Business Name</label>
-          <input type="text" id="business" name="business" placeholder="Wambui Electronics">
-        </div>
-
-        <div class="form-group">
-          <label for="message">Optional Message</label>
-          <textarea id="message" name="message" placeholder="Tell us what you sell..."></textarea>
-        </div>
-
-        <input type="hidden" name="_captcha" value="false" />
-
-        <button type="submit">Join Waitlist</button>
-        <div id="waitlistSuccess" style="display:none;"><i class="fas fa-check-circle"></i> Thanks! We'll notify you at launch.</div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="faq">
-  <div class="container">
-    <div class="section-title animate"><h2>FAQ</h2></div>
-    <div class="faq-container">
-      <div class="faq-item active animate delay-1">
-        <div class="faq-question">What devices can run Retail-Lite POS? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer"><p>Any Android 5.0+ phone/tablet or Windows PC. 2 GB RAM recommended.</p></div>
-      </div>
-      <div class="faq-item animate delay-2">
-        <div class="faq-question">How does offline mode work? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer"><p>Stores data locally and syncs automatically when you’re back online.</p></div>
-      </div>
-      <div class="faq-item animate delay-3">
-        <div class="faq-question">Is M-Pesa integration included? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer"><p>Yes – all plans include full M-Pesa support at no extra cost.</p></div>
-      </div>
-      <div class="faq-item animate">
-        <div class="faq-question">How much does it cost? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer"><p>Plans start at KSh 999 / month. Wait-list members get 3 months free at launch.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-about">
-        <div class="footer-logo"><img src="Logo2.png" alt="Retail-Lite POS Logo"/></div>
-        <p>Retail-Lite POS is Kenyan-built for local retailers. Empowering SMEs with affordable tech.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="https://wa.me/254732655941"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="footer-links-column">
-        <h3 class="footer-heading">Quick Links</h3>
-        <ul class="footer-links">
+        <ul class="nav-links" id="navLinks">
           <li><a href="#features">Features</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#how-it-works">Functions</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#waitlist">Join Waitlist</a></li>
+          <li><a href="#comparison">Compare</a></li>
+          <li><a href="privacypolicy.html">Privacy Policy</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
-      </div>
-      <div class="footer-links-column">
-        <h3 class="footer-heading">Contact</h3>
-        <ul class="footer-links">
-          <li><i class="fas fa-envelope"></i> info@retaillite.co.ke</li>
-          <li><i class="fas fa-phone"></i> +254 710 450 454 | +254 732 655 941</li>
-          <li><i class="fas fa-map-marker-alt"></i> Bishop Magua Building, Nairobi</li>
-        </ul>
+        <div class="language-toggle">
+          <button id="langEn" class="active">EN</button>
+          <button id="langSw">SW</button>
+        </div>
+        <div class="theme-toggle" id="themeToggle">
+          <div class="theme-toggle-handle">
+            <i class="fas fa-sun"></i>
+          </div>
+        </div>
+        <a href="#waitlist" class="btn btn-primary btn-get-started nav-button">Early Access</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text animate">
+          <h1>Retail-Lite POS</h1>
+          <p class="tagline">
+            <span class="en">Power Your Biashara. Online or Offline.</span>
+            <span class="sw">Imarisha Biashara Yako. Mtandaoni au Nje ya Mtandao.</span>
+          </p>
+          <p class="en">The affordable, reliable point-of-sale solution designed for Kenyan retailers. Run your business seamlessly with or without internet.</p>
+          <p class="sw">Ufumbuzi wa bei nafuu na unaaminika uliobuniwa kwa wafanyabiashara wa Kenya. Endesha biashara yako kwa urahisi iwe kwa mtandao au nje ya mtandao.</p>
+          <div class="hero-buttons">
+            <a href="#waitlist" class="btn btn-primary">
+              <span class="en">Join Waitlist</span>
+              <span class="sw">Jiunge na Orodha</span>
+            </a>
+            <a href="#features" class="btn btn-secondary">
+              <span class="en">Learn More</span>
+              <span class="sw">Pata Maelezo Zaidi</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image animate delay-1">
+          <img src="POS-Hero 1.png" alt="Retail-Lite POS App Interface"/>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">© 2025 Retail-Lite POS. All rights reserved. BGDP. Made in Kenya for Africa.</div>
-  </div>
-</footer>
+  </section>
 
-<!-- Scripts -->
-<script>
-  /* Mobile menu */
-  const mobileBtn=document.getElementById('mobileMenuBtn');
-  const navLinks=document.getElementById('navLinks');
-  mobileBtn.addEventListener('click',()=>{navLinks.classList.toggle('active')});
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>
+          <span class="en">Powerful Features</span>
+          <span class="sw">Vipengele Vyenye Nguvu</span>
+        </h2>
+        <p class="en">Everything you need to run your retail business efficiently</p>
+        <p class="sw">Kila unachohitaji kuendesha biashara yako ya rejareja kwa ufanisi</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card animate delay-1">
+          <div class="feature-icon">
+            <img src="" alt="" />
+          </div>
+          <h3>
+            <span class="en">Offline Mode</span>
+            <span class="sw">Hali ya Nje ya Mtandao</span>
+          </h3>
+          <p class="en">Keep selling even without internet. Data syncs when you're back online.</p>
+          <p class="sw">Endelea kuuza hata bila mtandao. Data inalingana unapokuwa umerudi mtandaoni.</p>
+        </div>
+        <div class="feature-card animate delay-2">
+          <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
+          <h3>
+            <span class="en">M-Pesa Integration</span>
+            <span class="sw">Ujumuishaji wa M-Pesa</span>
+          </h3>
+          <p class="en">Accept & track M-Pesa payments automatically.</p>
+          <p class="sw">Pokea na kufuatilia malipo ya M-Pesa kiotomatiki.</p>
+        </div>
+        <div class="feature-card animate delay-3">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>
+            <span class="en">Smart Analytics</span>
+            <span class="sw">Uchambuzi Mzuri</span>
+          </h3>
+          <p class="en">Insights on best-sellers, peak hours & customers.</p>
+          <p class="sw">Ufahamu kuhusu mauzo bora, masaa ya kilele na wateja.</p>
+        </div>
+        <div class="feature-card animate delay-1">
+          <div class="feature-icon"><i class="fas fa-boxes"></i></div>
+          <h3>
+            <span class="en">Inventory Management</span>
+            <span class="sw">Usimamizi wa Malipo</span>
+          </h3>
+          <p class="en">Real-time stock levels and low-stock alerts.</p>
+          <p class="sw">Viango cha hisa halisi na alerti za hisa chini.</p>
+        </div>
+        <div class="feature-card animate delay-2">
+          <div class="feature-icon"><i class="fas fa-users"></i></div>
+          <h3>
+            <span class="en">Multi-User Access</span>
+            <span class="sw">Ufikiaji wa Watumiaji Wengi</span>
+          </h3>
+          <p class="en">Add staff with custom permissions.</p>
+          <p class="sw">Ongeza wafanyikazi wenye ruhusa maalum.</p>
+        </div>
+        <div class="feature-card animate delay-3">
+          <div class="feature-icon"><i class="fas fa-headset"></i></div>
+          <h3>
+            <span class="en">Local Support</span>
+            <span class="sw">Msaada wa Kienyeji</span>
+          </h3>
+          <p class="en">Kenya-based support in English & Swahili.</p>
+          <p class="sw">Msaada unaotolewa Kenya kwa Kiingereza na Kiswahili.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  /* FAQ accordion */
-  document.querySelectorAll('.faq-question').forEach(q=>{
-    q.addEventListener('click',()=>{q.parentElement.classList.toggle('active')});
-  });
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>
+          <span class="en">How It Works</span>
+          <span class="sw">Inafanyikaje</span>
+        </h2>
+        <p class="en">Get started in three simple steps</p>
+        <p class="sw">Anza kwa hatua tatu rahisi</p>
+      </div>
+      <div class="steps">
+        <div class="step animate delay-1">
+          <div class="step-number">1</div>
+          <h3>
+            <span class="en">Download</span>
+            <span class="sw">Pakua</span>
+          </h3>
+          <p class="en">Get the app from Google Play or our website</p>
+          <p class="sw">Pata programu kutoka kwa Google Play au tovuti yetu</p>
+        </div>
+        <div class="step animate delay-2">
+          <div class="step-number">2</div>
+          <h3>
+            <span class="en">Sign Up</span>
+            <span class="sw">Jisajili</span>
+          </h3>
+          <p class="en">Create your account & set up your store</p>
+          <p class="sw">Unda akaunti yako na usanidi duka lako</p>
+        </div>
+        <div class="step animate delay-3">
+          <div class="step-number">3</div>
+          <h3>
+            <span class="en">Start Selling</span>
+            <span class="sw">Anza Kuuza</span>
+          </h3>
+          <p class="en">Add products and begin processing sales</p>
+          <p class="sw">Ongeza bidhaa na uanze kufanya mauzo</p>
+        </div>
+      </div>
+      <div class="app-screens animate">
+        <img src="POS-Hero 1.png" alt="Retail-Lite POS App Screens">
+      </div>
+    </div>
+  </section>
 
-  document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('waitlistForm');
-  const success = document.getElementById('waitlistSuccess');
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>
+          <span class="en">What Our Users Say</span>
+          <span class="sw">Watumiaji Wetu Wasema Nini</span>
+        </h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate delay-1">
+          <p class="testimonial-text en">"Inventory errors reduced by 90%. Offline mode saves me during outages."</p>
+          <p class="testimonial-text sw">"Makosa ya hesabu ya bidhaa yamepungua kwa 90%. Hali ya nje ya mtandao inanisaidia wakati wa kukatika kwa umeme."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user"></i></div>
+            <div class="author-info">
+              <h4>Jane Wambui</h4>
+              <p class="en">Electronics Shop, Nairobi</p>
+              <p class="sw">Duka la Elektroniki, Nairobi</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate delay-2">
+          <p class="testimonial-text en">"M-Pesa integration saves hours daily. Everything reconciles automatically."</p>
+          <p class="testimonial-text sw">"Ujumuishaji wa M-Pesa unaokoa masaa kila siku. Kila kitu kinajipanga kiotomatiki."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user"></i></div>
+            <div class="author-info">
+              <h4>David Ochieng</h4>
+              <p class="en">Grocery Store, Kisumu</p>
+              <p class="sw">Duka la Vyakula, Kisumu</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate delay-3">
+          <p class="testimonial-text en">"Analytics helped me increase profits by 30% in two months!"</p>
+          <p class="testimonial-text sw">"Uchambuzi umenisaidia kuongeza faida kwa 30% kwa miezi miwili!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user"></i></div>
+            <div class="author-info">
+              <h4>Sarah Muthoni</h4>
+              <p class="en">Fashion Boutique, Mombasa</p>
+              <p class="sw">Duka la Mavazi, Mombasa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
+  <!-- Comparison -->
+  <section id="comparison" class="comparison">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>
+          <span class="en">How We Compare</span>
+          <span class="sw">Tunalinganishaje</span>
+        </h2>
+      </div>
+      <div class="comparison-chart">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="en">Feature</span>
+                <span class="sw">Kipengele</span>
+              </th>
+              <th>Retail-Lite POS</th>
+              <th>
+                <span class="en">Traditional POS</span>
+                <span class="sw">POS ya Kawaida</span>
+              </th>
+              <th>
+                <span class="en">Other Apps</span>
+                <span class="sw">Programu Nyingine</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="en">Offline Mode</span>
+                <span class="sw">Hali ya Nje ya Mtandao</span>
+              </td>
+              <td class="highlight"><i class="fas fa-check"></i> 
+                <span class="en">Yes</span>
+                <span class="sw">Ndio</span>
+              </td>
+              <td><i class="fas fa-times"></i> 
+                <span class="en">No</span>
+                <span class="sw">Hapana</span>
+              </td>
+              <td>
+                <span class="en">Limited</span>
+                <span class="sw">Mdogo</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="en">M-Pesa Integration</span>
+                <span class="sw">Ujumuishaji wa M-Pesa</span>
+              </td>
+              <td class="highlight">
+                <span class="en">Full Support</span>
+                <span class="sw">Usaidizi Kamili</span>
+              </td>
+              <td>
+                <span class="en">Partial</span>
+                <span class="sw">Sehemu</span>
+              </td>
+              <td>
+                <span class="en">Basic</span>
+                <span class="sw">Msingi</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="en">Price</span>
+                <span class="sw">Bei</span>
+              </td>
+              <td class="highlight">KSh 999/
+                <span class="en">mo</span>
+                <span class="sw">mwezi</span>
+              </td>
+              <td>KSh 15 000+</td>
+              <td>KSh 1 500/
+                <span class="en">mo</span>
+                <span class="sw">mwezi</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="en">Local Support</span>
+                <span class="sw">Msaada wa Kienyeji</span>
+              </td>
+              <td class="highlight">24/7 
+                <span class="en">in Kenya</span>
+                <span class="sw">Kenya</span>
+              </td>
+              <td>
+                <span class="en">International</span>
+                <span class="sw">Kimataifa</span>
+              </td>
+              <td>
+                <span class="en">Email only</span>
+                <span class="sw">Barua pepe tu</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="en">Multi-User</span>
+                <span class="sw">Watumiaji Wengi</span>
+              </td>
+              <td class="highlight">
+                <span class="en">Unlimited</span>
+                <span class="sw">Bila kikomo</span>
+              </td>
+              <td>
+                <span class="en">Extra cost</span>
+                <span class="sw">Gharama ya ziada</span>
+              </td>
+              <td>
+                <span class="en">Limited</span>
+                <span class="sw">Mdogo</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="en">Inventory</span>
+                <span class="sw">Hesabu ya Bidhaa</span>
+              </td>
+              <td class="highlight">
+                <span class="en">Advanced</span>
+                <span class="sw">Ya hali ya juu</span>
+              </td>
+              <td>
+                <span class="en">Basic</span>
+                <span class="sw">Msingi</span>
+              </td>
+              <td>
+                <span class="en">Basic</span>
+                <span class="sw">Msingi</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
+  <!-- Waitlist -->
+  <section id="waitlist" class="waitlist">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>
+          <span class="en">Join Waitlist</span>
+          <span class="sw">Jiunge na Orodha</span>
+        </h2>
+        <p class="en">Be first to know when we launch & get 3 months free</p>
+        <p class="sw">Wa kwanza kujua tunapozindua & pata miezi 3 bure</p>
+      </div>
+      <div class="waitlist-form animate delay-1">
+        <form id="waitlistForm" action="https://formspree.io/f/xdkdparp" method="POST" novalidate>
+          <div class="form-group">
+            <label for="emailOrPhone">
+              <span class="en">Email or Phone Number *</span>
+              <span class="sw">Barua pepe au Nambari ya Simu *</span>
+            </label>
+            <input type="text" id="emailOrPhone" name="emailOrPhone" placeholder="e.g. someone@mail.com or +254712345678" required>
+          </div>
 
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded' // Formspree expects urlencoded data
+          <div class="form-group">
+            <label for="name">
+              <span class="en">Full Name</span>
+              <span class="sw">Jina Kamili</span>
+            </label>
+            <input type="text" id="name" name="name" placeholder="Jane Wambui">
+          </div>
+
+          <div class="form-group">
+            <label for="business">
+              <span class="en">Business Name</span>
+              <span class="sw">Jina la Biashara</span>
+            </label>
+            <input type="text" id="business" name="business" placeholder="Wambui Electronics">
+          </div>
+
+          <div class="form-group">
+            <label for="message">
+              <span class="en">Optional Message</span>
+              <span class="sw">Ujumbe Wa Hiari</span>
+            </label>
+            <textarea id="message" name="message" placeholder="Tell us what you sell..."></textarea>
+          </div>
+
+          <input type="hidden" name="_captcha" value="false" />
+
+          <button type="submit">
+            <span class="en">Join Waitlist</span>
+            <span class="sw">Jiunge na Orodha</span>
+          </button>
+          <div id="waitlistSuccess" style="display:none;">
+            <i class="fas fa-check-circle"></i> 
+            <span class="en">Thanks! We'll notify you at launch.</span>
+            <span class="sw">Asante! Tutakutaarifu wakati wa kuzindua.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>
+          <span class="en">FAQ</span>
+          <span class="sw">Maswali Yanayoulizwa Sana</span>
+        </h2>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item active animate delay-1">
+          <div class="faq-question">
+            <span class="en">What devices can run Retail-Lite POS?</span>
+            <span class="sw">Vifaa gani vinaweza kuendesha Retail-Lite POS?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="en">Any Android 5.0+ phone/tablet or Windows PC. 2 GB RAM recommended.</p>
+            <p class="sw">Simu/tableti yoyote ya Android 5.0+ au PC ya Windows. RAM ya GB 2 inapendekezwa.</p>
+          </div>
+        </div>
+        <div class="faq-item animate delay-2">
+          <div class="faq-question">
+            <span class="en">How does offline mode work?</span>
+            <span class="sw">Hali ya nje ya mtandao inafanyikaje?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="en">Stores data locally and syncs automatically when you're back online.</p>
+            <p class="sw">Huhifadhi data ndani na inalingana kiotomatiki unapokuwa umerudi mtandaoni.</p>
+          </div>
+        </div>
+        <div class="faq-item animate delay-3">
+          <div class="faq-question">
+            <span class="en">Is M-Pesa integration included?</span>
+            <span class="sw">Je, ujumuishaji wa M-Pesa umejumuishwa?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="en">Yes – all plans include full M-Pesa support at no extra cost.</p>
+            <p class="sw">Ndio - mipango yote inajumuisha usaidizi kamili wa M-Pesa bila gharama ya ziada.</p>
+          </div>
+        </div>
+        <div class="faq-item animate">
+          <div class="faq-question">
+            <span class="en">How much does it cost?</span>
+            <span class="sw">Gharama yake ni kiasi gani?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="en">Plans start at KSh 999 / month. Wait-list members get 1 month free at launch.</p>
+            <p class="sw">Mipango huanzia KSh 999 / mwezi. Wanachama wa orodha hupata mwezi 1 bure wakati wa kuzindua.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo"><img src="Logo2.png" alt="Retail-Lite POS Logo"/></div>
+          <p class="en">Retail-Lite POS is Kenyan-built for local retailers. Empowering SMEs with affordable tech in Africa.</p>
+          <p class="sw">Retail-Lite POS imejengwa Kenya kwa wafanyabiashara wa kienyeji. Kuwezesha WBI kwa teknolojia nafuu barani Afrika.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me/254732655941"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-links-column">
+          <h3 class="footer-heading">
+            <span class="en">Quick Links</span>
+            <span class="sw">Viungo vya Haraka</span>
+          </h3>
+          <ul class="footer-links">
+            <li><a href="#features">
+              <i class="fas fa-arrow-right"></i>
+              <span class="en">Features</span>
+              <span class="sw">Vipengele</span>
+            </a></li>
+            <li><a href="#how-it-works">
+              <i class="fas fa-arrow-right"></i>
+              <span class="en">How It Works</span>
+              <span class="sw">Inafanyikaje</span>
+            </a></li>
+            <li><a href="#testimonials">
+              <i class="fas fa-arrow-right"></i>
+              <span class="en">Testimonials</span>
+              <span class="sw">Ushuhuda</span>
+            </a></li>
+            <li><a href="#waitlist">
+              <i class="fas fa-arrow-right"></i>
+              <span class="en">Join Waitlist</span>
+              <span class="sw">Jiunge na Orodha</span>
+            </a></li>
+            <li><a href="privacypolicy.html">
+              <i class="fas fa-arrow-right"></i>
+              <span class="en">Terms & Privacy Policy</span>
+              <span class="sw">Sheria na Sera ya Faragha</span>
+            </a></li>
+          </ul>
+        </div>
+        <div class="footer-links-column">
+          <h3 class="footer-heading">
+            <span class="en">Contact</span>
+            <span class="sw">Wasiliana</span>
+          </h3>
+          <ul class="footer-links">
+            <li><a href="mailto:info@retaillite.co.ke">
+              <i class="fas fa-envelope"></i> info@retaillite.co.ke
+            </a></li>
+            <li><a href="tel:+254710450454">
+              <i class="fas fa-phone"></i> +254 710 450 454
+            </a></li>
+            <li><a href="tel:+254732655941">
+              <i class="fas fa-phone"></i> +254 732 655 941
+            </a></li>
+            <li><a href="#">
+              <i class="fas fa-map-marker-alt"></i> 
+              <span class="en">Bishop Magua Building, Nairobi</span>
+              <span class="sw">Jengo la Bishop Magua, Nairobi</span>
+            </a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="en">© 2025 Retail-Lite POS. All rights reserved. BGDP. Made in Kenya for Africa.</span>
+        <span class="sw">© 2025 Retail-Lite POS. Haki zote zimehifadhiwa. BGDP. Imetengenezwa Kenya kwa Afrika.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    mobileBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('active');
+      });
+    });
+
+    // Waitlist form submission
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('waitlistForm');
+      const success = document.getElementById('waitlistSuccess');
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        try {
+          const formData = new URLSearchParams(new FormData(form)).toString();
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          });
+
+          if (res.ok) {
+            form.reset();
+            success.style.display = 'block';
+          } else {
+            alert('Error – please try again');
+          }
+        } catch {
+          alert('Network error – please try again');
         }
       });
+    });
 
-      if (res.ok) {
-        form.reset();
-        success.style.display = 'block';
-      } else {
-        alert('Error – please try again');
-      }
-    } catch {
-      alert('Network error – please try again');
+    // PWA install banner
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installBanner').classList.add('show');
+    });
+    document.getElementById('installBtn').addEventListener('click', () => {
+      deferredPrompt?.prompt();
+      deferredPrompt = null;
+      document.getElementById('installBanner').classList.remove('show');
+    });
+    document.getElementById('closeBannerBtn').addEventListener('click', () => {
+      document.getElementById('installBanner').classList.remove('show');
+    });
+
+    // Language toggle functionality
+    const langEn = document.getElementById('langEn');
+    const langSw = document.getElementById('langSw');
+    
+    langEn.addEventListener('click', () => {
+      document.documentElement.classList.remove('language-sw');
+      langEn.classList.add('active');
+      langSw.classList.remove('active');
+      localStorage.setItem('language', 'en');
+    });
+    
+    langSw.addEventListener('click', () => {
+      document.documentElement.classList.add('language-sw');
+      langSw.classList.add('active');
+      langEn.classList.remove('active');
+      localStorage.setItem('language', 'sw');
+    });
+    
+    // Check for saved language preference
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage === 'sw') {
+      document.documentElement.classList.add('language-sw');
+      langSw.classList.add('active');
+      langEn.classList.remove('active');
     }
-  });
-});
 
-const formData = new URLSearchParams(new FormData(form)).toString();
-const res = await fetch(form.action, {
-  method: 'POST',
-  body: formData,
-  headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' }
-});
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeToggle.querySelector('i').classList.remove('fa-moon');
+        themeToggle.querySelector('i').classList.add('fa-sun');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.querySelector('i').classList.remove('fa-sun');
+        themeToggle.querySelector('i').classList.add('fa-moon');
+      }
+    });
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.querySelector('i').classList.remove('fa-sun');
+      themeToggle.querySelector('i').classList.add('fa-moon');
+    }
 
-  /* PWA install banner */
-  let deferredPrompt=null;
-  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBanner').classList.add('show')});
-  document.getElementById('installBtn').addEventListener('click',()=>{deferredPrompt?.prompt();deferredPrompt=null;document.getElementById('installBanner').classList.remove('show')});
-  document.getElementById('closeBannerBtn').addEventListener('click',()=>document.getElementById('installBanner').classList.remove('show'));
-</script>
+    // Animation on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
